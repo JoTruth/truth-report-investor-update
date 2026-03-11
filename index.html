@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Truth Report — Investor & Stakeholder Update Q1 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --green: #6DC135;
+    --green-dark: #5aaa28;
+    --grey: #5A6472;
+    --grey-light: #8a95a0;
+    --grey-tile: #6b7580;
+    --white: #ffffff;
+    --off-white: #f5f6f7;
+    --dark: #1a1a2e;
+    --text: #2d3748;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--white);
+    border-bottom: 4px solid var(--green);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .header img { height: 56px; }
+  .header-right { text-align: right; }
+  .header-right .year { font-size: 2.6rem; font-weight: 800; color: var(--grey); line-height: 1; }
+  .header-right .period { font-size: 1rem; color: var(--green); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--grey);
+    padding: 0 48px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  .nav a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 14px 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  .nav a:hover { color: var(--white); border-bottom-color: var(--green); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--grey) 0%, #3a4450 100%);
+    color: var(--white);
+    padding: 60px 48px;
+    text-align: center;
+  }
+  .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; }
+  .hero h1 span { color: var(--green); }
+  .hero p { font-size: 1.1rem; opacity: 0.85; max-width: 720px; margin: 0 auto 24px; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--green);
+    color: var(--white);
+    padding: 8px 24px;
+    border-radius: 24px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 56px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: var(--green);
+    border-radius: 2px;
+  }
+  .section-subtitle {
+    color: var(--grey-light);
+    font-size: 0.95rem;
+    margin-bottom: 32px;
+  }
+
+  /* ── KPI TILES ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  .kpi-tile {
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .kpi-tile.grey { background: var(--grey-tile); color: var(--white); }
+  .kpi-tile.green { background: var(--green); color: var(--white); }
+  .kpi-tile.green-dark { background: var(--green-dark); color: var(--white); }
+  .kpi-tile .label { font-size: 0.78rem; font-weight: 600; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; }
+  .kpi-tile .sublabel { font-size: 0.7rem; opacity: 0.7; }
+  .kpi-tile .value { font-size: 1.9rem; font-weight: 800; line-height: 1.1; }
+  .kpi-tile .value.large { font-size: 2.2rem; }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .stat-item { font-size: 1rem; color: var(--text); }
+  .stat-item strong { font-weight: 800; color: var(--grey); }
+
+  /* ── PLATFORM CARDS ── */
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .platform-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px 16px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-top: 4px solid var(--green);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .platform-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .platform-card .platform-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .platform-card .platform-name { font-size: 0.8rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .platform-card .platform-metric { font-size: 1.3rem; font-weight: 800; color: var(--grey); }
+  .platform-card .platform-metric-label { font-size: 0.7rem; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .platform-card .platform-followers { font-size: 0.85rem; color: var(--green); font-weight: 700; margin-top: 8px; }
+
+  /* ── CHART CONTAINERS ── */
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+  .chart-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  }
+  .chart-card.full { grid-column: 1 / -1; }
+  .chart-title { font-size: 0.9rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
+  .chart-container { position: relative; height: 280px; }
+
+  /* ── MoM BADGES ── */
+  .mom-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .mom-badge {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 18px 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    flex: 1;
+    min-width: 180px;
+    border-left: 5px solid var(--green);
+  }
+  .mom-badge .mom-label { font-size: 0.75rem; font-weight: 700; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .mom-badge .mom-value { font-size: 1.6rem; font-weight: 800; color: var(--grey); }
+  .mom-badge .mom-change { font-size: 0.85rem; font-weight: 700; color: var(--green); margin-top: 4px; }
+  .mom-badge .mom-change.down { color: #e53e3e; }
+
+  /* ── FINANCIAL TABLE ── */
+  .fin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 32px;
+  }
+  .fin-table th {
+    background: var(--grey);
+    color: var(--white);
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .fin-table th.green { background: var(--green); }
+  .fin-table td { padding: 13px 20px; border-bottom: 1px solid #eee; font-size: 0.92rem; }
+  .fin-table tr:last-child td { border-bottom: none; }
+  .fin-table tr:hover td { background: #f9fafb; }
+  .fin-table .total-row td { font-weight: 800; background: var(--off-white); color: var(--grey); }
+  .fin-table .highlight td { background: #f0fae8; font-weight: 700; }
+  .fin-table td.green-val { color: var(--green); font-weight: 700; }
+  .fin-table td.red-val { color: #e53e3e; font-weight: 700; }
+
+  /* ── RUNWAY VISUAL ── */
+  .runway-bar-wrap {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 32px;
+  }
+  .runway-label { font-size: 0.85rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; justify-content: space-between; }
+  .runway-bar { height: 32px; background: #e2e8f0; border-radius: 16px; overflow: hidden; margin-bottom: 8px; }
+  .runway-fill { height: 100%; border-radius: 16px; display: flex; align-items: center; padding-left: 16px; font-size: 0.85rem; font-weight: 700; color: var(--white); transition: width 1.5s ease; }
+  .runway-fill.green { background: linear-gradient(90deg, var(--green), var(--green-dark)); }
+  .runway-fill.grey { background: linear-gradient(90deg, var(--grey), #3a4450); }
+
+  /* ── MILESTONES ── */
+  .milestone-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .milestone-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border-left: 5px solid var(--green);
+    transition: transform 0.2s;
+  }
+  .milestone-card:hover { transform: translateX(4px); }
+  .milestone-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .milestone-title { font-weight: 700; color: var(--grey); font-size: 0.95rem; margin-bottom: 4px; }
+  .milestone-desc { font-size: 0.85rem; color: #4a5568; line-height: 1.5; }
+
+  /* ── TOP POSTS ── */
+  .top-posts { margin-bottom: 32px; }
+  .post-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .post-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .post-rank { font-size: 1.4rem; font-weight: 800; color: var(--green); min-width: 32px; text-align: center; }
+  .post-platform { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 3px 10px; border-radius: 12px; color: var(--white); min-width: 80px; text-align: center; }
+  .post-platform.facebook { background: #4267B2; }
+  .post-platform.youtube { background: #FF0000; }
+  .post-platform.instagram { background: #C13584; }
+  .post-platform.tiktok { background: #010101; }
+  .post-platform.twitter { background: #1DA1F2; }
+  .post-text { flex: 1; font-size: 0.88rem; color: var(--text); }
+  .post-date { font-size: 0.75rem; color: var(--grey-light); margin-top: 2px; }
+  .post-metrics { text-align: right; min-width: 120px; }
+  .post-imp { font-size: 1rem; font-weight: 800; color: var(--grey); }
+  .post-int { font-size: 0.8rem; color: var(--green); font-weight: 600; }
+
+  /* ── PRIORITIES TABLE ── */
+  .priority-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .priority-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-top: 4px solid var(--green);
+  }
+  .priority-num { font-size: 2rem; font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 8px; }
+  .priority-title { font-weight: 700; color: var(--grey); font-size: 0.95rem; margin-bottom: 6px; }
+  .priority-desc { font-size: 0.85rem; color: #4a5568; line-height: 1.5; }
+
+  /* ── CONFIDENTIALITY FOOTER ── */
+  .footer {
+    background: var(--grey);
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    padding: 24px 48px;
+    font-size: 0.78rem;
+    line-height: 1.6;
+    margin-top: 48px;
+  }
+  .footer strong { color: var(--white); }
+
+  /* ── DIVIDER ── */
+  .section-divider { border: none; border-top: 2px solid #e2e8f0; margin: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .header { padding: 20px 24px; }
+    .section { padding: 40px 24px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .platform-grid { grid-template-columns: repeat(3, 1fr); }
+    .chart-row { grid-template-columns: 1fr; }
+    .milestone-list { grid-template-columns: 1fr; }
+    .priority-grid { grid-template-columns: 1fr; }
+    .nav { padding: 0 24px; }
+  }
+
+  /* ── ANIMATION ── */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── CONFIDENTIAL BANNER ── */
+  .conf-banner {
+    background: #fff3cd;
+    border-left: 4px solid #f6c23e;
+    padding: 10px 48px;
+    font-size: 0.8rem;
+    color: #856404;
+  }
+</style>
+</head>
+<body>
+
+<!-- CONFIDENTIAL BANNER -->
+<div class="conf-banner">
+  <strong>CONFIDENTIAL:</strong> This report is intended solely for named investors, shareholders, and team members of Truth Report Media (Pty) Ltd. Unauthorised distribution is strictly prohibited.
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <img src="logo.png" alt="Truth Report Logo">
+  <div class="header-right">
+    <div class="year">2026</div>
+    <div class="period">1 April 2025 &mdash; 28 February 2026</div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#analytics">Analytics</a>
+  <a href="#financial">Financials</a>
+  <a href="#operations">Operations</a>
+  <a href="#milestones">Milestones</a>
+  <a href="#product">Product</a>
+  <a href="#outlook">Outlook</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Investor &amp; Stakeholder Update<br><span>Q1 2026 — End of February</span></h1>
+  <p>We have built a highly efficient media engine and a substantial, engaged South African audience. The next chapter is about converting that audience into sustainable revenue and a platform we own.</p>
+  <span class="hero-badge">Confidential Report &mdash; March 2026</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 1: ANALYTICS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section id="analytics" class="section fade-in">
+  <div class="section-title">1. Platform Analytics &amp; Audience Growth</div>
+  <p class="section-subtitle">Cumulative performance since inception (1 April 2025) through 28 February 2026 across all channels.</p>
+
+  <!-- HEADLINE KPI TILES -->
+  <div class="kpi-grid">
+    <div class="kpi-tile grey">
+      <div class="label">Total Blended Impressions</div>
+      <div class="sublabel">since April 2025</div>
+      <div class="value large">68,411,796</div>
+    </div>
+    <div class="kpi-tile grey">
+      <div class="label">Total Company Expenses</div>
+      <div class="sublabel">up to end January 2026</div>
+      <div class="value">R3,968,778</div>
+    </div>
+    <div class="kpi-tile green">
+      <div class="label">Blended Cost Per Impression</div>
+      <div class="sublabel">across all channels</div>
+      <div class="value large">R0.06</div>
+    </div>
+    <div class="kpi-tile green">
+      <div class="label">Average Cost Per Video</div>
+      <div class="sublabel">produced (improving)</div>
+      <div class="value">R5,609.64</div>
+    </div>
+    <div class="kpi-tile grey">
+      <div class="label">Total Blended Interactions</div>
+      <div class="sublabel">since April 2025</div>
+      <div class="value large">3,530,231</div>
+    </div>
+    <div class="kpi-tile grey">
+      <div class="label">Total Followers</div>
+      <div class="sublabel">all platforms combined</div>
+      <div class="value">348,449</div>
+    </div>
+    <div class="kpi-tile green">
+      <div class="label">Blended Cost Per Interaction</div>
+      <div class="sublabel">across all channels</div>
+      <div class="value large">R1.12</div>
+    </div>
+    <div class="kpi-tile green">
+      <div class="label">YouTube Income</div>
+      <div class="sublabel">cumulative to Jan 2026</div>
+      <div class="value">R148,729</div>
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-item"><strong>Total YouTube Videos:</strong> 659</div>
+    <div class="stat-item"><strong>Total Shorts:</strong> 353 (35 p/m)</div>
+    <div class="stat-item"><strong>Total Longform Videos:</strong> 306 (30 p/m)</div>
+    <div class="stat-item"><strong>Audience Growth:</strong> +14.7% (303,875 → 348,449)</div>
+    <div class="stat-item"><strong>Cost Per Video Improvement:</strong> -5.3% vs prior period</div>
+  </div>
+
+  <!-- JAN / FEB MoM BADGES -->
+  <h3 style="font-size:1rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">January &amp; February 2026 — Month-on-Month Performance</h3>
+  <div class="mom-row">
+    <div class="mom-badge">
+      <div class="mom-label">Jan Impressions</div>
+      <div class="mom-value">3,020,129</div>
+      <div class="mom-change">All Platforms</div>
+    </div>
+    <div class="mom-badge">
+      <div class="mom-label">Feb Impressions</div>
+      <div class="mom-value">5,575,872</div>
+      <div class="mom-change">+84.6% MoM ↑</div>
+    </div>
+    <div class="mom-badge">
+      <div class="mom-label">Jan Interactions</div>
+      <div class="mom-value">165,220</div>
+      <div class="mom-change">All Platforms</div>
+    </div>
+    <div class="mom-badge">
+      <div class="mom-label">Feb Interactions</div>
+      <div class="mom-value">265,923</div>
+      <div class="mom-change">+61.0% MoM ↑</div>
+    </div>
+    <div class="mom-badge">
+      <div class="mom-label">Jan Posts Published</div>
+      <div class="mom-value">415</div>
+      <div class="mom-change">All Platforms</div>
+    </div>
+    <div class="mom-badge">
+      <div class="mom-label">Feb Posts Published</div>
+      <div class="mom-value">656</div>
+      <div class="mom-change">+58.1% MoM ↑</div>
+    </div>
+  </div>
+
+  <!-- PLATFORM CARDS -->
+  <h3 style="font-size:1rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Channel Breakdown (Cumulative Since Inception)</h3>
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="platform-icon">📘</div>
+      <div class="platform-name">Facebook</div>
+      <div class="platform-metric">38,562,290</div>
+      <div class="platform-metric-label">Impressions</div>
+      <div class="platform-followers">147,000 followers</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">▶️</div>
+      <div class="platform-name">YouTube</div>
+      <div class="platform-metric">13,016,078</div>
+      <div class="platform-metric-label">Impressions</div>
+      <div class="platform-followers">113,000 followers</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">📸</div>
+      <div class="platform-name">Instagram</div>
+      <div class="platform-metric">6,896,016</div>
+      <div class="platform-metric-label">Impressions</div>
+      <div class="platform-followers">43,400 followers</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">🎵</div>
+      <div class="platform-name">TikTok</div>
+      <div class="platform-metric">5,463,122</div>
+      <div class="platform-metric-label">Impressions</div>
+      <div class="platform-followers">39,500 followers</div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">𝕏</div>
+      <div class="platform-name">X (Twitter)</div>
+      <div class="platform-metric">4,471,219</div>
+      <div class="platform-metric-label">Impressions</div>
+      <div class="platform-followers">5,549 followers</div>
+    </div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="chart-row">
+    <div class="chart-card full">
+      <div class="chart-title">Monthly Impressions by Platform (Apr 2025 – Feb 2026)</div>
+      <div class="chart-container"><canvas id="impressionsChart"></canvas></div>
+    </div>
+  </div>
+  <div class="chart-row">
+    <div class="chart-card">
+      <div class="chart-title">Follower Distribution by Platform</div>
+      <div class="chart-container"><canvas id="followersChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Jan vs Feb 2026 — Impressions by Platform</div>
+      <div class="chart-container"><canvas id="janFebChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- TOP POSTS -->
+  <h3 style="font-size:1rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Top Performing Posts — January &amp; February 2026</h3>
+  <div class="top-posts">
+    <div class="post-card">
+      <div class="post-rank">1</div>
+      <span class="post-platform facebook">Facebook</span>
+      <div style="flex:1">
+        <div class="post-text">Follow the money behind the presidency — The moment South Africa lost its last chance at real accountability</div>
+        <div class="post-date">11 Feb 2026</div>
+      </div>
+      <div class="post-metrics">
+        <div class="post-imp">666,918</div>
+        <div class="post-int">22,884 interactions</div>
+      </div>
+    </div>
+    <div class="post-card">
+      <div class="post-rank">2</div>
+      <span class="post-platform facebook">Facebook</span>
+      <div style="flex:1">
+        <div class="post-text">The ANC is a dead horse — South Africa's last chance at real accountability</div>
+        <div class="post-date">11 Feb 2026</div>
+      </div>
+      <div class="post-metrics">
+        <div class="post-imp">298,421</div>
+        <div class="post-int">12,493 interactions</div>
+      </div>
+    </div>
+    <div class="post-card">
+      <div class="post-rank">3</div>
+      <span class="post-platform facebook">Facebook</span>
+      <div style="flex:1">
+        <div class="post-text">The ultimate ANC voter test — Thirty years. Endless promises. Zero delivery.</div>
+        <div class="post-date">23 Feb 2026</div>
+      </div>
+      <div class="post-metrics">
+        <div class="post-imp">171,204</div>
+        <div class="post-int">10,135 interactions</div>
+      </div>
+    </div>
+    <div class="post-card">
+      <div class="post-rank">4</div>
+      <span class="post-platform facebook">Facebook</span>
+      <div style="flex:1">
+        <div class="post-text">Why South Africa is on the brink — hard-hitting breakdown</div>
+        <div class="post-date">15 Jan 2026</div>
+      </div>
+      <div class="post-metrics">
+        <div class="post-imp">139,997</div>
+        <div class="post-int">8,098 interactions</div>
+      </div>
+    </div>
+    <div class="post-card">
+      <div class="post-rank">5</div>
+      <span class="post-platform facebook">Facebook</span>
+      <div style="flex:1">
+        <div class="post-text">Suing the ANC for Crimes Against Humanity — Errol Naidoo &amp; Rob Hersov (FNC)</div>
+        <div class="post-date">25 Feb 2026</div>
+      </div>
+      <div class="post-metrics">
+        <div class="post-imp">130,658</div>
+        <div class="post-int">11,815 interactions</div>
+      </div>
+    </div>
+    <div class="post-card">
+      <div class="post-rank">6</div>
+      <span class="post-platform youtube">YouTube</span>
+      <div style="flex:1">
+        <div class="post-text">ROB HERSOV: South Africa's Last Exit Before Becoming Venezuela</div>
+        <div class="post-date">15 Jan 2026</div>
+      </div>
+      <div class="post-metrics">
+        <div class="post-imp">108,197</div>
+        <div class="post-int">8,207 interactions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 2: FINANCIALS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section id="financial" class="section fade-in">
+  <div class="section-title">2. Financial Position &amp; Runway</div>
+  <p class="section-subtitle">Based on January 2026 P&amp;L and Investec bank statements through February 2026.</p>
+
+  <!-- FINANCIAL KPI TILES -->
+  <div class="kpi-grid">
+    <div class="kpi-tile grey">
+      <div class="label">Total Cash Position</div>
+      <div class="sublabel">as at 27 January 2026</div>
+      <div class="value large">R7.5M</div>
+    </div>
+    <div class="kpi-tile grey">
+      <div class="label">Net Burn Rate</div>
+      <div class="sublabel">average per month</div>
+      <div class="value">~R342,750</div>
+    </div>
+    <div class="kpi-tile green">
+      <div class="label">Runway</div>
+      <div class="sublabel">at current net burn</div>
+      <div class="value large">21.8 months</div>
+    </div>
+    <div class="kpi-tile green">
+      <div class="label">Dec 2025 Trading Income</div>
+      <div class="sublabel">best month to date</div>
+      <div class="value">R105,037</div>
+    </div>
+  </div>
+
+  <!-- RUNWAY VISUAL -->
+  <div class="runway-bar-wrap">
+    <div class="runway-label">
+      <span>Runway Visualisation (months remaining)</span>
+      <span style="color:var(--green)">21.8 months at current burn</span>
+    </div>
+    <div class="runway-bar">
+      <div class="runway-fill green" id="runwayBar" style="width:0%">21.8 months</div>
+    </div>
+    <div style="font-size:0.78rem; color:var(--grey-light); margin-top:6px;">Based on R7.5M cash position and ~R342,750 net monthly burn. Zero-income scenario: 18.2 months.</div>
+  </div>
+
+  <!-- REVENUE TABLE -->
+  <h3 style="font-size:1rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Revenue by Stream</h3>
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Revenue Stream</th>
+        <th class="green">Dec 2025</th>
+        <th class="green">Jan 2026</th>
+        <th>YTD Total (Apr–Jan)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Google &amp; YouTube Ad Revenue</td>
+        <td class="green-val">R45,037</td>
+        <td class="green-val">R34,430</td>
+        <td>R171,669</td>
+      </tr>
+      <tr>
+        <td>Paid Promotions</td>
+        <td class="green-val">R60,000</td>
+        <td class="green-val">R60,000</td>
+        <td>R360,000</td>
+      </tr>
+      <tr>
+        <td>Interest Income</td>
+        <td>R38,145</td>
+        <td>R37,048</td>
+        <td>R375,750</td>
+      </tr>
+      <tr class="total-row">
+        <td><strong>Total Income</strong></td>
+        <td><strong>R143,182</strong></td>
+        <td><strong>R131,478</strong></td>
+        <td><strong>R907,419</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- SPEND TABLE -->
+  <h3 style="font-size:1rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Monthly Operating Expenditure</h3>
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Jan 2026</th>
+        <th>Dec 2025</th>
+        <th>Nov 2025</th>
+        <th>Oct 2025</th>
+        <th>Sep 2025</th>
+        <th>Aug 2025 (Peak)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>People</td>
+        <td>R197,100</td>
+        <td>R226,500</td>
+        <td>R326,864</td>
+        <td>R344,820</td>
+        <td>R363,086</td>
+        <td>R435,950</td>
+      </tr>
+      <tr>
+        <td>Tools &amp; Subscriptions</td>
+        <td>R21,175</td>
+        <td>R20,148</td>
+        <td>R23,358</td>
+        <td>R69,826</td>
+        <td>R27,841</td>
+        <td>R67,769</td>
+      </tr>
+      <tr>
+        <td>Marketing &amp; Advertising</td>
+        <td>R12,118</td>
+        <td>R12,447</td>
+        <td>R16,141</td>
+        <td>R5,243</td>
+        <td>R9,815</td>
+        <td>R6,231</td>
+      </tr>
+      <tr>
+        <td>Operational Expenses</td>
+        <td>R40,787</td>
+        <td>R21,049</td>
+        <td>R24,038</td>
+        <td>R30,735</td>
+        <td>R49,170</td>
+        <td>R132,694</td>
+      </tr>
+      <tr class="total-row highlight">
+        <td><strong>Total Operating Spend</strong></td>
+        <td class="green-val"><strong>R271,180</strong></td>
+        <td><strong>R280,579</strong></td>
+        <td><strong>R390,402</strong></td>
+        <td><strong>R450,624</strong></td>
+        <td><strong>R449,911</strong></td>
+        <td class="red-val"><strong>R642,645</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:0.85rem; color:var(--grey-light); margin-bottom:32px;">Operating spend has decreased by <strong style="color:var(--green)">57.8%</strong> from the August 2025 peak of R642,645 to R271,180 in January 2026. This reflects the successful transition to a fully remote model, active cost optimisation, and tighter budget controls.</p>
+
+  <!-- SPEND CHART -->
+  <div class="chart-row">
+    <div class="chart-card full">
+      <div class="chart-title">Monthly Spend vs Revenue Trend (Apr 2025 – Jan 2026)</div>
+      <div class="chart-container"><canvas id="spendChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 3: OPERATIONS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section id="operations" class="section fade-in">
+  <div class="section-title">3. Operations &amp; Production Controls</div>
+  <p class="section-subtitle">New capacity guardrails and accountability systems implemented in February 2026 to drive "higher views, lower cost."</p>
+
+  <div class="chart-row" style="grid-template-columns: 1fr 1fr 1fr;">
+    <div class="chart-card" style="border-top:4px solid var(--green);">
+      <div class="chart-title">YouTube Longform</div>
+      <div style="font-size:2.5rem; font-weight:800; color:var(--grey); margin:8px 0;">3/day</div>
+      <div style="font-size:0.85rem; color:#4a5568;">Max per day (1 live per week). Fixed recording cadence now in place.</div>
+    </div>
+    <div class="chart-card" style="border-top:4px solid var(--green);">
+      <div class="chart-title">Shorts / Clips</div>
+      <div style="font-size:2.5rem; font-weight:800; color:var(--grey); margin:8px 0;">5–10/day</div>
+      <div style="font-size:0.85rem; color:#4a5568;">Dedicated Clips Channel: min 20/week. Distributed across all platforms.</div>
+    </div>
+    <div class="chart-card" style="border-top:4px solid var(--green);">
+      <div class="chart-title">Filming Days</div>
+      <div style="font-size:2.5rem; font-weight:800; color:var(--grey); margin:8px 0;">Max 2/wk</div>
+      <div style="font-size:0.85rem; color:#4a5568;">1 JHB weekly studio set. CPT: R5,000/unlimited hour negotiated.</div>
+    </div>
+  </div>
+
+  <table class="fin-table">
+    <thead>
+      <tr>
+        <th>System / Initiative</th>
+        <th class="green">Status</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Trello Implementation</strong></td>
+        <td class="green-val">Live — Feb 2026</td>
+        <td>Real-time pipeline visibility across all 21 operational sections. Tightens handoffs, deadlines, and approvals.</td>
+      </tr>
+      <tr>
+        <td><strong>RACI Framework Update</strong></td>
+        <td class="green-val">Complete</td>
+        <td>Updated to enforce strict ownership from strategy through production and final delivery.</td>
+      </tr>
+      <tr>
+        <td><strong>Fixed Recording Dates</strong></td>
+        <td class="green-val">Implemented</td>
+        <td>Centralised booking system. Production Manager manages all content submissions.</td>
+      </tr>
+      <tr>
+        <td><strong>Zulu Channel</strong></td>
+        <td style="color:#f6c23e; font-weight:700;">Launching</td>
+        <td>Dedicated Zulu-language channel to expand reach into a significant underserved audience segment.</td>
+      </tr>
+      <tr>
+        <td><strong>Spotify Distribution</strong></td>
+        <td style="color:#f6c23e; font-weight:700;">Planning</td>
+        <td>All high-performing Rob Hersov long-forms to go live on Spotify by mid-February.</td>
+      </tr>
+      <tr>
+        <td><strong>Remote Operations</strong></td>
+        <td class="green-val">Complete</td>
+        <td>Full transition from office-based to remote model. Production output stable, burn rate significantly reduced.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 4: MILESTONES -->
+<!-- ═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section id="milestones" class="section fade-in">
+  <div class="section-title">4. Key Milestones</div>
+  <p class="section-subtitle">Major achievements during the December 2025 – February 2026 reporting period.</p>
+
+  <div class="milestone-list">
+    <div class="milestone-card">
+      <div class="milestone-icon">🎤</div>
+      <div>
+        <div class="milestone-title">Future of Nations Conference (FNC) — 25 February 2026</div>
+        <div class="milestone-desc">The FNC was a landmark success. Fully funded with sponsorships paid, the event generated <strong>close to 50 high-quality content pieces</strong> in a single day — dramatically lowering average cost per video and filling the Q2 content pipeline. The "Suing the ANC" piece from the event became the top-performing post of the period with 666,918 impressions.</div>
+      </div>
+    </div>
+    <div class="milestone-card">
+      <div class="milestone-icon">💳</div>
+      <div>
+        <div class="milestone-title">Netcash Payment Integration — Live</div>
+        <div class="milestone-desc">Netcash is fully integrated and tested. The platform can now accept user donations via a two-click experience (Apple Pay / Google Pay). This establishes the technical foundation for user wallet balances and future subscription transactions.</div>
+      </div>
+    </div>
+    <div class="milestone-card">
+      <div class="milestone-icon">📊</div>
+      <div>
+        <div class="milestone-title">Community Polls — Live</div>
+        <div class="milestone-desc">Community Polls launched successfully on the platform. Frictionless single-click engagement. This is the first strategic step toward the future introduction of prediction markets — a key premium product differentiator.</div>
+      </div>
+    </div>
+    <div class="milestone-card">
+      <div class="milestone-icon">🎙️</div>
+      <div>
+        <div class="milestone-title">Truth Report Live — Weekly Anchor Show</div>
+        <div class="milestone-desc">Truth Report Live is established as the weekly anchor show on Tuesdays, focused on South African politics and current affairs. The premiere episode registered 15,000 views within the first 24 hours and generated R500 in Superchats.</div>
+      </div>
+    </div>
+    <div class="milestone-card">
+      <div class="milestone-icon">🏆</div>
+      <div>
+        <div class="milestone-title">Podcaster Search — Completed</div>
+        <div class="milestone-desc">The Truth Podcaster Search initiative concluded with a live finale featuring the top 10 candidates. Winners have been selected and are producing content for Truth Report, funded via Grassroots Mzansi NPC.</div>
+      </div>
+    </div>
+    <div class="milestone-card">
+      <div class="milestone-icon">📰</div>
+      <div>
+        <div class="milestone-title">MyBroadband Feature</div>
+        <div class="milestone-desc">Truth Report was featured in MyBroadband as a new online news platform competing with News24 and IOL, highlighting backing from Rob Hersov and Nick French and positioning the platform as a "well-funded, big podcaster."</div>
+      </div>
+    </div>
+    <div class="milestone-card">
+      <div class="milestone-icon">🌿</div>
+      <div>
+        <div class="milestone-title">Grassroots Mzansi NPC Integration</div>
+        <div class="milestone-desc">The NPC is fully operational as a "sidecar" funding and donations vehicle with Section 18A certification, enabling tax-deductible donations for qualifying contributors.</div>
+      </div>
+    </div>
+    <div class="milestone-card">
+      <div class="milestone-icon">📉</div>
+      <div>
+        <div class="milestone-title">57.8% Reduction in Monthly Burn</div>
+        <div class="milestone-desc">Operating spend reduced from R642,645 (August 2025 peak) to R271,180 in January 2026. This was achieved through the transition to remote operations, software subscription optimisation, and people cost management.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 5: PRODUCT -->
+<!-- ═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section id="product" class="section fade-in">
+  <div class="section-title">5. Product &amp; Technology</div>
+  <p class="section-subtitle">Platform development, monetisation infrastructure, and the new Ward-Level Political Intelligence Platform.</p>
+
+  <div class="chart-row" style="grid-template-columns: 1fr 1fr;">
+    <div>
+      <h3 style="font-size:1rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Freemium Model Roadmap</h3>
+      <table class="fin-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="green">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Netcash Donations (2-click)</td>
+            <td class="green-val">Live</td>
+          </tr>
+          <tr>
+            <td>Community Polls</td>
+            <td class="green-val">Live</td>
+          </tr>
+          <tr>
+            <td>YouTube Paid Subscriptions</td>
+            <td style="color:#f6c23e; font-weight:700;">In Progress</td>
+          </tr>
+          <tr>
+            <td>Facebook Paid Subscriptions</td>
+            <td style="color:#f6c23e; font-weight:700;">In Progress</td>
+          </tr>
+          <tr>
+            <td>AI-Powered Content Summaries</td>
+            <td style="color:#f6c23e; font-weight:700;">Planned</td>
+          </tr>
+          <tr>
+            <td>Daily Audio Podcast Roundups</td>
+            <td style="color:#f6c23e; font-weight:700;">Planned</td>
+          </tr>
+          <tr>
+            <td>Prediction Markets</td>
+            <td style="color:#a0aec0; font-weight:700;">Future</td>
+          </tr>
+          <tr>
+            <td>Ward-Level Intelligence Platform</td>
+            <td style="color:#a0aec0; font-weight:700;">Planning Phase</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3 style="font-size:1rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Ward-Level Political Intelligence Platform</h3>
+      <div class="milestone-card" style="margin-bottom:16px; border-left-color: var(--grey);">
+        <div class="milestone-icon">🗺️</div>
+        <div>
+          <div class="milestone-title">Currently in Planning Phase</div>
+          <div class="milestone-desc">A proprietary data product aggregating IEC ward-level election results, current ward councillor data, geographic boundary data, and party intelligence into a single canonical lookup table covering every ward in South Africa. This is a genuine competitive moat and the foundational infrastructure for our future prediction markets and premium political intelligence features.</div>
+        </div>
+      </div>
+      <div style="background:var(--off-white); border-radius:8px; padding:16px; font-size:0.85rem; color:#4a5568; line-height:1.6;">
+        <strong style="color:var(--grey);">Why this matters:</strong> South Africa's 2026 local government elections create a unique window. A platform with ward-level intelligence, real-time results, and prediction capabilities will be the definitive destination for political media in the country — and a significant premium revenue driver.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- SECTION 6: OUTLOOK -->
+<!-- ═══════════════════════════════════════════════════ -->
+<hr class="section-divider">
+<section id="outlook" class="section fade-in">
+  <div class="section-title">6. Q2 2026 Priorities &amp; Outlook</div>
+  <p class="section-subtitle">We have built the engine. The next chapter is monetisation, owned audience, and proprietary product.</p>
+
+  <div class="priority-grid">
+    <div class="priority-card">
+      <div class="priority-num">01</div>
+      <div class="priority-title">Maximise FNC Content</div>
+      <div class="priority-desc">Edit, package, and distribute the ~50 Future of Nations Conference content pieces to maximise Q2 reach, engagement, and subscriber growth across all platforms.</div>
+    </div>
+    <div class="priority-card">
+      <div class="priority-num">02</div>
+      <div class="priority-title">Activate Monetisation</div>
+      <div class="priority-desc">Launch paid subscriptions on YouTube and Facebook. Activate the donations feature. Grow Google/YouTube ad revenue through watch-hour and subscriber growth.</div>
+    </div>
+    <div class="priority-card">
+      <div class="priority-num">03</div>
+      <div class="priority-title">Intelligence Platform</div>
+      <div class="priority-desc">Complete data sourcing and structuring for the Ward-Level Political Intelligence Platform. Lay the groundwork for prediction markets ahead of the 2026 elections cycle.</div>
+    </div>
+    <div class="priority-card">
+      <div class="priority-num">04</div>
+      <div class="priority-title">SHA &amp; Board Formation</div>
+      <div class="priority-desc">Circulate, finalise, and sign the Shareholders' Agreement. Establish the formal board. Approve and lock the 2026 budget.</div>
+    </div>
+    <div class="priority-card">
+      <div class="priority-num">05</div>
+      <div class="priority-title">Owned Audience Growth</div>
+      <div class="priority-desc">Accelerate web traffic and registered user growth. Pull our audience off big tech and onto a platform we own — reducing censorship risk and unlocking direct monetisation.</div>
+    </div>
+    <div class="priority-card">
+      <div class="priority-num">06</div>
+      <div class="priority-title">Operational Discipline</div>
+      <div class="priority-desc">Maintain capacity guardrails and Trello-driven workflows. Continue driving down cost per video while increasing output quality and audience retention.</div>
+    </div>
+  </div>
+
+  <!-- CLOSING STATEMENT -->
+  <div style="background:var(--grey); color:var(--white); border-radius:12px; padding:32px 40px; margin-top:16px;">
+    <div style="font-size:1.3rem; font-weight:800; margin-bottom:12px; color:var(--green);">The Bottom Line</div>
+    <p style="font-size:1rem; line-height:1.8; opacity:0.9;">In our first 10 months, Truth Report has acquired <strong>nearly 70 million impressions</strong> and built a following of <strong>348,449 people</strong> at a blended cost of just <strong>R0.06 per impression</strong>. Our burn rate has been cut by 57.8% from peak. We have over 21 months of runway. The Future of Nations Conference proved we can generate premium content at scale. The unit economics are working. The next phase is not more content — it is better monetisation per impression, and a platform our audience calls home.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <strong>Truth Report Media (Pty) Ltd</strong> &mdash; Investor &amp; Stakeholder Update &mdash; March 2026<br>
+  This report is confidential and intended solely for named investors, shareholders, and team members. Unauthorised review, use, disclosure, or distribution is strictly prohibited. All rights reserved.
+</footer>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CHARTS JS -->
+<!-- ═══════════════════════════════════════════════════ -->
+<script>
+const TR_GREEN = '#6DC135';
+const TR_GREY = '#5A6472';
+const TR_GREEN_DARK = '#5aaa28';
+
+// Months
+const months = ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb'];
+
+// ── IMPRESSIONS BY PLATFORM CHART ──
+new Chart(document.getElementById('impressionsChart'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'Facebook',
+        data: [3184758,3936549,1775644,5451253,4279421,2301624,4932249,3224789,3762653,909357,3266978],
+        backgroundColor: '#4267B2',
+        stack: 'stack'
+      },
+      {
+        label: 'YouTube',
+        data: [1379740,820813,425533,1008635,1084661,866552,1052038,1587855,1630468,613432,1460481],
+        backgroundColor: '#FF0000',
+        stack: 'stack'
+      },
+      {
+        label: 'Instagram',
+        data: [498661,1024453,387055,899971,654916,338063,923051,453474,667960,179623,580705],
+        backgroundColor: '#C13584',
+        stack: 'stack'
+      },
+      {
+        label: 'TikTok',
+        data: [939113,1137901,298137,578968,390147,407787,205182,131793,1144111,29941,127624],
+        backgroundColor: '#69C9D0',
+        stack: 'stack'
+      },
+      {
+        label: 'X (Twitter)',
+        data: [0,2267,32089,364367,303810,90010,227040,30081,100955,24938,138158],
+        backgroundColor: '#aaaaaa',
+        stack: 'stack'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString()}`
+        }
+      }
+    },
+    scales: {
+      x: { stacked: true, ticks: { color: TR_GREY }, grid: { display: false } },
+      y: {
+        stacked: true,
+        ticks: {
+          color: TR_GREY,
+          callback: v => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : (v/1000).toFixed(0)+'k'
+        },
+        grid: { color: '#eee' }
+      }
+    }
+  }
+});
+
+// ── FOLLOWERS PIE CHART ──
+new Chart(document.getElementById('followersChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Facebook (147k)', 'YouTube (113k)', 'Instagram (43.4k)', 'TikTok (39.5k)', 'X (5.5k)'],
+    datasets: [{
+      data: [147000, 113000, 43400, 39500, 5549],
+      backgroundColor: ['#4267B2','#FF0000','#C13584','#69C9D0','#aaaaaa'],
+      borderWidth: 3,
+      borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { color: TR_GREY, font: { size: 10 }, padding: 12 } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} followers`
+        }
+      }
+    }
+  }
+});
+
+// ── JAN vs FEB CHART ──
+new Chart(document.getElementById('janFebChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Facebook','YouTube','Instagram','TikTok','X (Twitter)'],
+    datasets: [
+      {
+        label: 'January 2026',
+        data: [1537015, 1085870, 288084, 72418, 35597],
+        backgroundColor: TR_GREY,
+        borderRadius: 4
+      },
+      {
+        label: 'February 2026',
+        data: [3266978, 1460481, 580705, 127624, 138158],
+        backgroundColor: TR_GREEN,
+        borderRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString()}`
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { color: TR_GREY }, grid: { display: false } },
+      y: {
+        ticks: {
+          color: TR_GREY,
+          callback: v => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : (v/1000).toFixed(0)+'k'
+        },
+        grid: { color: '#eee' }
+      }
+    }
+  }
+});
+
+// ── SPEND vs REVENUE CHART ──
+new Chart(document.getElementById('spendChart'), {
+  type: 'line',
+  data: {
+    labels: ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan'],
+    datasets: [
+      {
+        label: 'Operating Expenses',
+        data: [332032,394581,401116,355296,642645,449911,450624,390402,280579,271180],
+        borderColor: '#e53e3e',
+        backgroundColor: 'rgba(229,62,62,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: '#e53e3e',
+        fill: true,
+        tension: 0.3
+      },
+      {
+        label: 'Trading Income',
+        data: [0,0,210,37241,70383,71726,73627,79015,105037,94430],
+        borderColor: TR_GREEN,
+        backgroundColor: 'rgba(109,193,53,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 5,
+        pointBackgroundColor: TR_GREEN,
+        fill: true,
+        tension: 0.3
+      },
+      {
+        label: 'Interest Income',
+        data: [1882,37611,45924,46878,45544,39875,43240,39604,38145,37048],
+        borderColor: '#f6c23e',
+        backgroundColor: 'rgba(246,194,62,0.05)',
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#f6c23e',
+        fill: false,
+        tension: 0.3,
+        borderDash: [5,3]
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11 } } },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.dataset.label}: R${ctx.raw.toLocaleString()}`
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { color: TR_GREY }, grid: { display: false } },
+      y: {
+        ticks: {
+          color: TR_GREY,
+          callback: v => 'R' + (v/1000).toFixed(0) + 'k'
+        },
+        grid: { color: '#eee' }
+      }
+    }
+  }
+});
+
+// ── RUNWAY ANIMATION ──
+setTimeout(() => {
+  document.getElementById('runwayBar').style.width = '72%'; // 21.8 / 30 months max
+}, 800);
+
+// ── FADE IN OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
