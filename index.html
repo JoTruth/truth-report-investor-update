@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Truth Report — Investor & Stakeholder Update Q1 2026</title>
+<title>Truth Report — Investor &amp; Stakeholder Update Q1 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 <style>
@@ -15,187 +15,270 @@
     --grey-light: #8a95a0;
     --grey-tile: #6b7580;
     --white: #ffffff;
-    --off-white: #f5f6f7;
+    --off-white: #f4f6f8;
     --dark: #1a1a2e;
     --text: #2d3748;
+    --red: #e53e3e;
+    --amber: #d97706;
+    --blue: #3b82f6;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body { font-family: 'Lato', 'Segoe UI', Arial, sans-serif; background: var(--off-white); color: var(--text); line-height: 1.6; }
 
   /* ── CONFIDENTIAL BANNER ── */
-  .conf-banner { background: #fff8e1; border-bottom: 2px solid #f6c23e; padding: 8px 48px; font-size: 0.78rem; color: #7a6000; font-weight: 700; letter-spacing: 0.3px; }
+  .conf-banner { background: #fff8e1; border-bottom: 2px solid #f6c23e; padding: 9px 48px; font-size: 0.78rem; color: #7a6000; font-weight: 700; letter-spacing: 0.3px; display: flex; align-items: center; gap: 8px; }
+  .conf-banner::before { content: '🔒'; font-size: 0.9rem; }
 
   /* ── HEADER ── */
-  .header { background: var(--white); border-bottom: 4px solid var(--green); padding: 24px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(0,0,0,0.1); }
-  .header img { height: 52px; }
+  .header { background: var(--white); border-bottom: 4px solid var(--green); padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+  .header img { height: 50px; }
   .header-right { text-align: right; }
-  .header-right .year { font-size: 2.8rem; font-weight: 900; color: var(--grey); line-height: 1; }
-  .header-right .period { font-size: 0.95rem; color: var(--green); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+  .header-right .year { font-size: 2.6rem; font-weight: 900; color: var(--grey); line-height: 1; }
+  .header-right .period { font-size: 0.88rem; color: var(--green); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
 
   /* ── NAV ── */
-  .nav { background: var(--grey); padding: 0 48px; display: flex; gap: 2px; overflow-x: auto; }
-  .nav a { color: rgba(255,255,255,0.7); text-decoration: none; padding: 13px 20px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; white-space: nowrap; transition: all 0.2s; border-bottom: 3px solid transparent; }
-  .nav a:hover, .nav a.active { color: var(--white); border-bottom-color: var(--green); }
+  .nav { background: var(--grey); padding: 0 48px; display: flex; gap: 0; overflow-x: auto; position: sticky; top: 94px; z-index: 99; }
+  .nav a { color: rgba(255,255,255,0.65); text-decoration: none; padding: 14px 22px; font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; transition: all 0.2s; border-bottom: 3px solid transparent; display: flex; align-items: center; gap: 6px; }
+  .nav a:hover, .nav a.active { color: var(--white); border-bottom-color: var(--green); background: rgba(255,255,255,0.05); }
 
   /* ── HERO ── */
-  .hero { background: linear-gradient(135deg, #2d3748 0%, var(--grey) 60%, #3a4450 100%); color: var(--white); padding: 72px 48px 60px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(109,193,53,0.08) 0%, transparent 60%); pointer-events: none; }
-  .hero h1 { font-size: 2.6rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -0.5px; }
+  .hero { background: linear-gradient(135deg, #1e2533 0%, #2d3748 40%, #3a4a3a 100%); color: var(--white); padding: 80px 48px 64px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60%; left: -30%; width: 160%; height: 220%; background: radial-gradient(ellipse at 40% 60%, rgba(109,193,53,0.12) 0%, transparent 55%); pointer-events: none; }
+  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, var(--green), var(--green-dark), transparent); }
+  .hero-eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 16px; opacity: 0.9; }
+  .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 12px; letter-spacing: -1px; line-height: 1.1; }
   .hero h1 span { color: var(--green); }
-  .hero-sub { font-size: 1.15rem; opacity: 0.85; max-width: 680px; margin: 0 auto 28px; font-weight: 300; }
-  .hero-badge { display: inline-block; background: var(--green); color: var(--white); padding: 9px 28px; border-radius: 28px; font-weight: 700; font-size: 0.88rem; letter-spacing: 1.5px; text-transform: uppercase; }
-  .hero-stats { display: flex; justify-content: center; gap: 48px; margin-top: 40px; flex-wrap: wrap; }
-  .hero-stat { text-align: center; }
-  .hero-stat .hs-val { font-size: 2.2rem; font-weight: 900; color: var(--green); line-height: 1; }
-  .hero-stat .hs-label { font-size: 0.78rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .hero-sub { font-size: 1.1rem; opacity: 0.8; max-width: 700px; margin: 0 auto 32px; font-weight: 300; line-height: 1.7; }
+  .hero-badge { display: inline-block; background: rgba(109,193,53,0.15); color: var(--green); padding: 8px 24px; border-radius: 28px; font-weight: 700; font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(109,193,53,0.3); }
+  .hero-stats { display: flex; justify-content: center; gap: 0; margin-top: 48px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
+  .hero-stat { text-align: center; padding: 0 40px; border-right: 1px solid rgba(255,255,255,0.1); }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat .hs-val { font-size: 2.4rem; font-weight: 900; color: var(--green); line-height: 1; }
+  .hero-stat .hs-label { font-size: 0.72rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 6px; }
 
-  /* ── SECTIONS ── */
-  .section { padding: 56px 48px; max-width: 1200px; margin: 0 auto; }
-  .section-divider { border: none; border-top: 1px solid #e2e8f0; margin: 0; }
-  .section-title { font-size: 1.5rem; font-weight: 900; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 14px; }
-  .section-title::after { content: ''; flex: 1; height: 3px; background: linear-gradient(90deg, var(--green), transparent); border-radius: 2px; }
-  .section-subtitle { color: var(--grey-light); font-size: 0.92rem; margin-bottom: 32px; font-weight: 400; }
+  /* ── SECTION WRAPPER ── */
+  .section-wrap { background: var(--white); margin: 24px 0; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+  .section { padding: 52px 56px; max-width: 1240px; margin: 0 auto; }
+
+  /* ── SECTION HEADER ── */
+  .section-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 8px; }
+  .section-num { background: var(--green); color: var(--white); font-size: 0.75rem; font-weight: 900; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 3px; letter-spacing: 0.5px; }
+  .section-title-text { font-size: 1.6rem; font-weight: 900; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.2; }
+  .section-subtitle { color: var(--grey-light); font-size: 0.9rem; margin-bottom: 36px; font-weight: 400; line-height: 1.6; padding-left: 52px; }
+  .section-divider-line { height: 3px; background: linear-gradient(90deg, var(--green) 0%, var(--green-light) 40%, transparent 100%); border: none; margin-bottom: 32px; }
 
   /* ── KPI TILES ── */
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-bottom: 40px; border-radius: 10px; overflow: hidden; box-shadow: 0 6px 24px rgba(0,0,0,0.12); }
-  .kpi-tile { padding: 24px 20px; display: flex; flex-direction: column; gap: 6px; transition: filter 0.2s; }
-  .kpi-tile:hover { filter: brightness(1.05); }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-bottom: 36px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.14); }
+  .kpi-tile { padding: 26px 22px; display: flex; flex-direction: column; gap: 6px; transition: filter 0.2s, transform 0.2s; cursor: default; }
+  .kpi-tile:hover { filter: brightness(1.07); }
   .kpi-tile.grey { background: var(--grey-tile); color: var(--white); }
   .kpi-tile.green { background: var(--green); color: var(--white); }
   .kpi-tile.green-dark { background: var(--green-dark); color: var(--white); }
-  .kpi-tile .label { font-size: 0.76rem; font-weight: 700; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; }
-  .kpi-tile .sublabel { font-size: 0.68rem; opacity: 0.65; }
-  .kpi-tile .value { font-size: 2rem; font-weight: 900; line-height: 1.1; }
-  .kpi-tile .value.large { font-size: 2.3rem; }
-  .kpi-tile .trend { font-size: 0.75rem; font-weight: 700; opacity: 0.9; margin-top: 2px; }
+  .kpi-tile .label { font-size: 0.72rem; font-weight: 700; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; }
+  .kpi-tile .sublabel { font-size: 0.65rem; opacity: 0.6; }
+  .kpi-tile .value { font-size: 2.1rem; font-weight: 900; line-height: 1.1; }
+  .kpi-tile .value.large { font-size: 2.4rem; }
+  .kpi-tile .trend { font-size: 0.73rem; font-weight: 700; opacity: 0.9; margin-top: 2px; }
+
+  /* ── STAT STRIP ── */
+  .stat-strip { background: linear-gradient(135deg, var(--off-white), #eef2f7); border-radius: 12px; padding: 22px 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 32px; display: flex; gap: 0; flex-wrap: wrap; border: 1px solid #e2e8f0; }
+  .stat-item { flex: 1; min-width: 160px; padding: 0 24px; border-right: 1px solid #d1d9e0; }
+  .stat-item:first-child { padding-left: 0; }
+  .stat-item:last-child { border-right: none; }
+  .stat-item .si-label { font-size: 0.68rem; font-weight: 700; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .stat-item .si-val { font-size: 1.2rem; font-weight: 900; color: var(--green); }
+  .stat-item .si-sub { font-size: 0.75rem; color: var(--grey-light); margin-top: 2px; }
 
   /* ── MoM BADGES ── */
-  .mom-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
-  .mom-badge { background: var(--white); border-radius: 12px; padding: 20px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); border-left: 5px solid var(--green); transition: transform 0.2s, box-shadow 0.2s; }
-  .mom-badge:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-  .mom-badge .mom-label { font-size: 0.72rem; font-weight: 700; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .mom-badge .mom-row-inner { display: flex; align-items: flex-end; gap: 12px; }
-  .mom-badge .mom-jan { font-size: 1.1rem; font-weight: 700; color: var(--grey-light); }
-  .mom-badge .mom-arrow { font-size: 1.2rem; color: var(--green); }
-  .mom-badge .mom-feb { font-size: 1.8rem; font-weight: 900; color: var(--grey); }
-  .mom-badge .mom-change { font-size: 0.85rem; font-weight: 700; color: var(--green); margin-top: 6px; background: var(--green-light); padding: 3px 10px; border-radius: 12px; display: inline-block; }
+  .mom-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 36px; }
+  .mom-badge { background: var(--white); border-radius: 14px; padding: 22px 24px; box-shadow: 0 3px 16px rgba(0,0,0,0.08); border-left: 5px solid var(--green); transition: transform 0.2s, box-shadow 0.2s; }
+  .mom-badge:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.12); }
+  .mom-badge .mom-label { font-size: 0.7rem; font-weight: 700; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .mom-badge .mom-row-inner { display: flex; align-items: flex-end; gap: 10px; }
+  .mom-badge .mom-jan { font-size: 1rem; font-weight: 700; color: var(--grey-light); }
+  .mom-badge .mom-arrow { font-size: 1.4rem; color: var(--green); font-weight: 900; }
+  .mom-badge .mom-feb { font-size: 1.9rem; font-weight: 900; color: var(--grey); }
+  .mom-badge .mom-change { font-size: 0.82rem; font-weight: 700; color: var(--green); margin-top: 8px; background: var(--green-light); padding: 4px 12px; border-radius: 14px; display: inline-block; }
 
   /* ── PLATFORM CARDS ── */
-  .platform-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 40px; }
-  .platform-card { background: var(--white); border-radius: 12px; padding: 20px 14px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.07); border-top: 4px solid var(--green); transition: transform 0.2s, box-shadow 0.2s; cursor: default; }
-  .platform-card:hover { transform: translateY(-5px); box-shadow: 0 10px 28px rgba(0,0,0,0.12); }
-  .platform-card .platform-icon { font-size: 1.8rem; margin-bottom: 8px; }
-  .platform-card .platform-name { font-size: 0.75rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
-  .platform-card .platform-metric { font-size: 1.25rem; font-weight: 900; color: var(--grey); }
-  .platform-card .platform-metric-label { font-size: 0.65rem; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
-  .platform-card .platform-followers { font-size: 0.82rem; color: var(--green); font-weight: 700; margin-top: 8px; }
+  .platform-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 36px; }
+  .platform-card { background: var(--white); border-radius: 14px; padding: 22px 14px; text-align: center; box-shadow: 0 3px 14px rgba(0,0,0,0.08); border-top: 4px solid var(--green); transition: transform 0.2s, box-shadow 0.2s; cursor: default; }
+  .platform-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.13); }
+  .platform-card.fb { border-top-color: #4267B2; }
+  .platform-card.yt { border-top-color: #FF0000; }
+  .platform-card.ig { border-top-color: #C13584; }
+  .platform-card.tt { border-top-color: #69C9D0; }
+  .platform-card.xtwit { border-top-color: #aaaaaa; }
+  .platform-card .platform-icon { font-size: 2rem; margin-bottom: 8px; }
+  .platform-card .platform-name { font-size: 0.72rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .platform-card .platform-metric { font-size: 1.3rem; font-weight: 900; color: var(--grey); }
+  .platform-card .platform-metric-label { font-size: 0.62rem; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .platform-card .platform-followers { font-size: 0.85rem; color: var(--green); font-weight: 700; margin-top: 10px; }
+  .platform-card .platform-share { margin-top: 10px; height: 4px; background: #eee; border-radius: 2px; overflow: hidden; }
+  .platform-card .platform-share-fill { height: 100%; border-radius: 2px; transition: width 1.5s ease; }
 
   /* ── CHART CONTAINERS ── */
   .chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
-  .chart-card { background: var(--white); border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+  .chart-card { background: var(--white); border-radius: 14px; padding: 26px; box-shadow: 0 3px 14px rgba(0,0,0,0.07); border: 1px solid #eef0f3; }
   .chart-card.full { grid-column: 1 / -1; }
-  .chart-title { font-size: 0.82rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px; }
-  .chart-container { position: relative; height: 280px; }
+  .chart-title { font-size: 0.78rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .chart-title::before { content: ''; width: 3px; height: 14px; background: var(--green); border-radius: 2px; display: inline-block; }
+  .chart-container { position: relative; height: 290px; }
 
   /* ── TOP POSTS ── */
-  .top-posts { margin-bottom: 32px; }
-  .post-card { background: var(--white); border-radius: 10px; padding: 14px 18px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 14px; transition: box-shadow 0.2s, transform 0.2s; }
-  .post-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateX(3px); }
-  .post-rank { font-size: 1.5rem; font-weight: 900; color: var(--green); min-width: 28px; text-align: center; }
-  .post-platform { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 12px; color: var(--white); min-width: 78px; text-align: center; }
+  .post-card { background: var(--white); border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 16px; transition: box-shadow 0.2s, transform 0.2s; border: 1px solid #f0f2f5; }
+  .post-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateX(4px); }
+  .post-rank { font-size: 1.6rem; font-weight: 900; color: var(--green); min-width: 30px; text-align: center; line-height: 1; }
+  .post-platform { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 5px 12px; border-radius: 14px; color: var(--white); min-width: 82px; text-align: center; }
   .post-platform.facebook { background: #4267B2; }
   .post-platform.youtube { background: #FF0000; }
-  .post-text { flex: 1; font-size: 0.88rem; color: var(--text); font-weight: 400; line-height: 1.4; }
-  .post-date { font-size: 0.72rem; color: var(--grey-light); white-space: nowrap; }
-  .post-metrics { text-align: right; min-width: 120px; }
-  .post-impressions { font-size: 1rem; font-weight: 900; color: var(--grey); }
-  .post-interactions { font-size: 0.72rem; color: var(--green); font-weight: 700; }
+  .post-text { flex: 1; font-size: 0.88rem; color: var(--text); font-weight: 400; line-height: 1.45; }
+  .post-date { font-size: 0.7rem; color: var(--grey-light); white-space: nowrap; }
+  .post-metrics { text-align: right; min-width: 130px; }
+  .post-impressions { font-size: 1.05rem; font-weight: 900; color: var(--grey); }
+  .post-interactions { font-size: 0.7rem; color: var(--green); font-weight: 700; margin-top: 2px; }
+  .post-bar { height: 3px; background: #eee; border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .post-bar-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--green-dark)); border-radius: 2px; transition: width 1.5s ease; }
 
   /* ── FINANCIAL TABLE ── */
-  .fin-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 28px; }
-  .fin-table th { background: var(--grey); color: var(--white); padding: 13px 18px; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  .fin-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 14px; overflow: hidden; box-shadow: 0 3px 14px rgba(0,0,0,0.07); margin-bottom: 28px; border: 1px solid #eef0f3; }
+  .fin-table th { background: var(--grey); color: var(--white); padding: 14px 18px; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
   .fin-table th.green { background: var(--green); }
-  .fin-table td { padding: 12px 18px; border-bottom: 1px solid #eef0f2; font-size: 0.9rem; }
+  .fin-table td { padding: 13px 18px; border-bottom: 1px solid #f0f2f5; font-size: 0.9rem; }
   .fin-table tr:last-child td { border-bottom: none; }
-  .fin-table tr:hover td { background: #f9fafb; }
+  .fin-table tr:hover td { background: #fafbfc; }
   .fin-table .total-row td { font-weight: 900; background: var(--off-white); color: var(--grey); border-top: 2px solid #e2e8f0; }
   .fin-table .highlight td { background: #f0fae8; font-weight: 700; }
   .fin-table td.green-val { color: var(--green); font-weight: 700; }
-  .fin-table td.red-val { color: #e53e3e; font-weight: 700; }
-  .fin-table td.amber-val { color: #d97706; font-weight: 700; }
+  .fin-table td.red-val { color: var(--red); font-weight: 700; }
+  .fin-table td.amber-val { color: var(--amber); font-weight: 700; }
 
   /* ── RUNWAY ── */
-  .runway-bar-wrap { background: var(--white); border-radius: 12px; padding: 28px 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); margin-bottom: 28px; }
-  .runway-label { font-size: 0.82rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
-  .runway-label span { font-size: 1.6rem; font-weight: 900; color: var(--green); }
-  .runway-bar { height: 36px; background: #e2e8f0; border-radius: 18px; overflow: hidden; margin-bottom: 10px; }
-  .runway-fill { height: 100%; border-radius: 18px; display: flex; align-items: center; padding-left: 18px; font-size: 0.85rem; font-weight: 700; color: var(--white); width: 0; transition: width 1.8s cubic-bezier(0.4,0,0.2,1); }
-  .runway-fill.green { background: linear-gradient(90deg, var(--green), var(--green-dark)); }
-  .runway-note { font-size: 0.8rem; color: var(--grey-light); margin-top: 8px; }
+  .runway-bar-wrap { background: linear-gradient(135deg, #f8fafc, var(--white)); border-radius: 14px; padding: 32px 36px; box-shadow: 0 3px 14px rgba(0,0,0,0.07); margin-bottom: 28px; border: 1px solid #eef0f3; }
+  .runway-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+  .runway-header .rh-label { font-size: 0.78rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 0.8px; }
+  .runway-header .rh-val { font-size: 2rem; font-weight: 900; color: var(--green); }
+  .runway-bar { height: 40px; background: #e8edf2; border-radius: 20px; overflow: hidden; margin-bottom: 12px; }
+  .runway-fill { height: 100%; border-radius: 20px; display: flex; align-items: center; padding-left: 20px; font-size: 0.85rem; font-weight: 700; color: var(--white); width: 0; transition: width 2s cubic-bezier(0.4,0,0.2,1); background: linear-gradient(90deg, var(--green), var(--green-dark)); }
+  .runway-markers { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--grey-light); margin-top: 6px; }
+  .runway-note { font-size: 0.8rem; color: var(--grey-light); margin-top: 12px; line-height: 1.6; border-top: 1px solid #eee; padding-top: 12px; }
+
+  /* ── PATH TO REVENUE ── */
+  .revenue-path { background: linear-gradient(135deg, #f0fae8, #f8fcf4); border-radius: 14px; padding: 32px 36px; margin-top: 32px; border: 1px solid #d4edba; }
+  .revenue-path h3 { font-size: 1.1rem; font-weight: 900; color: var(--grey); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+  .revenue-path h3::before { content: '→'; color: var(--green); font-size: 1.3rem; font-weight: 900; }
+  .revenue-path .rp-sub { font-size: 0.88rem; color: #4a5568; margin-bottom: 24px; line-height: 1.6; }
+  .rp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .rp-item { background: var(--white); border-radius: 10px; padding: 20px; border-left: 4px solid var(--green); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .rp-item .rp-num { font-size: 1.8rem; font-weight: 900; color: var(--green-light); line-height: 1; margin-bottom: 6px; }
+  .rp-item .rp-title { font-weight: 700; color: var(--grey); font-size: 0.9rem; margin-bottom: 8px; }
+  .rp-item .rp-desc { font-size: 0.82rem; color: #4a5568; line-height: 1.55; }
+
+  /* ── OPS CARDS ── */
+  .ops-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
+  .ops-card { background: var(--white); border-radius: 14px; padding: 28px 24px; text-align: center; box-shadow: 0 3px 14px rgba(0,0,0,0.07); border-top: 4px solid var(--green); }
+  .ops-card .ops-num { font-size: 3rem; font-weight: 900; color: var(--grey); line-height: 1; margin: 8px 0; }
+  .ops-card .ops-label { font-size: 0.72rem; font-weight: 700; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .ops-card .ops-desc { font-size: 0.82rem; color: #4a5568; line-height: 1.55; }
+
+  /* ── STATUS CARDS ── */
+  .status-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 28px; }
+  .status-card { background: var(--white); border-radius: 12px; padding: 18px 22px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); display: flex; align-items: flex-start; gap: 16px; border: 1px solid #f0f2f5; transition: transform 0.2s; }
+  .status-card:hover { transform: translateY(-2px); }
+  .status-dot-wrap { flex-shrink: 0; margin-top: 3px; }
+  .status-dot { width: 14px; height: 14px; border-radius: 50%; }
+  .status-dot.live { background: var(--green); box-shadow: 0 0 0 4px var(--green-light); }
+  .status-dot.progress { background: var(--amber); box-shadow: 0 0 0 4px #fef3c7; }
+  .status-dot.launching { background: var(--blue); box-shadow: 0 0 0 4px #dbeafe; }
+  .status-card .sc-title { font-weight: 700; color: var(--grey); font-size: 0.9rem; margin-bottom: 4px; }
+  .status-card .sc-badge { font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-bottom: 6px; }
+  .sc-badge.live { background: var(--green-light); color: var(--green-dark); }
+  .sc-badge.progress { background: #fef3c7; color: #92400e; }
+  .sc-badge.launching { background: #dbeafe; color: #1d4ed8; }
+  .status-card .sc-desc { font-size: 0.8rem; color: #4a5568; line-height: 1.55; }
 
   /* ── MILESTONES ── */
   .milestone-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
-  .milestone-card { background: var(--white); border-radius: 12px; padding: 20px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); display: flex; gap: 14px; align-items: flex-start; border-left: 5px solid var(--green); transition: transform 0.2s, box-shadow 0.2s; }
-  .milestone-card:hover { transform: translateX(5px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
-  .milestone-card.featured { border-left-color: var(--green); background: linear-gradient(135deg, #f0fae8, var(--white)); }
-  .milestone-icon { font-size: 1.7rem; flex-shrink: 0; }
-  .milestone-title { font-weight: 700; color: var(--grey); font-size: 0.92rem; margin-bottom: 5px; }
-  .milestone-desc { font-size: 0.83rem; color: #4a5568; line-height: 1.55; }
-  .milestone-tag { display: inline-block; background: var(--green); color: var(--white); font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-  .milestone-tag.amber { background: #d97706; }
-  .milestone-tag.blue { background: #3b82f6; }
+  .milestone-card { background: var(--white); border-radius: 14px; padding: 22px 24px; box-shadow: 0 3px 14px rgba(0,0,0,0.07); display: flex; gap: 16px; align-items: flex-start; border-left: 5px solid var(--green); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #f0f2f5; border-left-width: 5px; }
+  .milestone-card:hover { transform: translateX(5px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .milestone-card.major-green { border-left-color: var(--green); background: linear-gradient(135deg, #f0fae8, var(--white)); }
+  .milestone-card.major-red { border-left-color: var(--red); background: linear-gradient(135deg, #fff5f5, var(--white)); }
+  .milestone-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .milestone-title { font-weight: 700; color: var(--grey); font-size: 0.93rem; margin-bottom: 6px; line-height: 1.4; }
+  .milestone-desc { font-size: 0.82rem; color: #4a5568; line-height: 1.6; }
+  .milestone-tag { display: inline-block; font-size: 0.62rem; font-weight: 700; padding: 3px 10px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .milestone-tag.green { background: var(--green); color: var(--white); }
+  .milestone-tag.red { background: var(--red); color: var(--white); }
+  .milestone-tag.amber { background: var(--amber); color: var(--white); }
+  .milestone-tag.blue { background: var(--blue); color: var(--white); }
+  .milestone-tag.grey { background: var(--grey); color: var(--white); }
+  .milestone-tag.light { background: var(--green-light); color: var(--green-dark); }
 
-  /* ── TEAM SECTION ── */
-  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 32px; }
-  .team-card { background: var(--white); border-radius: 12px; padding: 18px 16px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.07); border-top: 3px solid var(--green); transition: transform 0.2s; }
-  .team-card:hover { transform: translateY(-4px); }
-  .team-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--green); color: var(--white); font-size: 1.2rem; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
-  .team-name { font-weight: 700; color: var(--grey); font-size: 0.88rem; margin-bottom: 3px; }
-  .team-role { font-size: 0.72rem; color: var(--grey-light); text-transform: uppercase; letter-spacing: 0.3px; }
-  .team-type { font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-top: 6px; display: inline-block; }
+  /* ── TEAM ── */
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  .team-card { background: var(--white); border-radius: 14px; padding: 20px 16px; text-align: center; box-shadow: 0 3px 12px rgba(0,0,0,0.07); border-top: 3px solid var(--green); transition: transform 0.2s, box-shadow 0.2s; }
+  .team-card:hover { transform: translateY(-5px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
+  .team-avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--green), var(--green-dark)); color: var(--white); font-size: 1.2rem; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .team-name { font-weight: 700; color: var(--grey); font-size: 0.88rem; margin-bottom: 4px; }
+  .team-role { font-size: 0.7rem; color: var(--grey-light); line-height: 1.4; }
+  .team-type { font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 10px; margin-top: 8px; display: inline-block; }
   .team-type.core { background: var(--green-light); color: var(--green-dark); }
   .team-type.creator { background: #dbeafe; color: #1d4ed8; }
   .team-type.tech { background: #fce7f3; color: #9d174d; }
+  .team-section-label { font-size: 0.78rem; font-weight: 700; color: var(--grey); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; margin-top: 28px; padding-bottom: 8px; border-bottom: 2px solid var(--green-light); display: flex; align-items: center; gap: 8px; }
+  .team-section-label::before { content: ''; width: 4px; height: 16px; background: var(--green); border-radius: 2px; display: inline-block; }
+
+  /* ── INSIGHT BOX ── */
+  .insight-box { background: linear-gradient(135deg, #1e2533, #2d3748); color: var(--white); border-radius: 16px; padding: 36px 44px; margin: 28px 0; position: relative; overflow: hidden; }
+  .insight-box::before { content: ''; position: absolute; top: -40%; right: -10%; width: 50%; height: 180%; background: radial-gradient(circle, rgba(109,193,53,0.1) 0%, transparent 60%); pointer-events: none; }
+  .insight-box .ib-title { font-size: 1.3rem; font-weight: 900; color: var(--green); margin-bottom: 14px; }
+  .insight-box p { font-size: 0.95rem; line-height: 1.85; opacity: 0.88; font-weight: 300; }
+  .insight-box strong { font-weight: 700; color: var(--white); opacity: 1; }
 
   /* ── PRIORITIES ── */
   .priority-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 28px; }
-  .priority-card { background: var(--white); border-radius: 12px; padding: 24px 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: transform 0.2s, box-shadow 0.2s; border-bottom: 4px solid var(--green); }
-  .priority-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.1); }
-  .priority-num { font-size: 2.2rem; font-weight: 900; color: var(--green-light); line-height: 1; margin-bottom: 8px; }
-  .priority-title { font-size: 1rem; font-weight: 700; color: var(--grey); margin-bottom: 8px; }
-  .priority-desc { font-size: 0.83rem; color: #4a5568; line-height: 1.55; }
+  .priority-card { background: var(--white); border-radius: 14px; padding: 26px 22px; box-shadow: 0 3px 14px rgba(0,0,0,0.07); transition: transform 0.2s, box-shadow 0.2s; border-bottom: 4px solid var(--green); border: 1px solid #f0f2f5; border-bottom-width: 4px; }
+  .priority-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+  .priority-num { font-size: 2.4rem; font-weight: 900; color: var(--green-light); line-height: 1; margin-bottom: 10px; }
+  .priority-title { font-size: 1rem; font-weight: 700; color: var(--grey); margin-bottom: 10px; }
+  .priority-desc { font-size: 0.82rem; color: #4a5568; line-height: 1.6; }
+  .priority-owner { margin-top: 14px; font-size: 0.72rem; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; padding-top: 12px; border-top: 1px solid var(--green-light); }
 
   /* ── PRODUCT ROADMAP ── */
-  .roadmap-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--white); border-radius: 10px; margin-bottom: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); transition: transform 0.15s; }
+  .roadmap-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: var(--white); border-radius: 10px; margin-bottom: 8px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); transition: transform 0.15s; border: 1px solid #f0f2f5; }
   .roadmap-item:hover { transform: translateX(4px); }
   .roadmap-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
   .roadmap-dot.live { background: var(--green); box-shadow: 0 0 0 4px var(--green-light); }
-  .roadmap-dot.progress { background: #f6c23e; box-shadow: 0 0 0 4px #fef9e7; }
+  .roadmap-dot.progress { background: var(--amber); box-shadow: 0 0 0 4px #fef3c7; }
   .roadmap-dot.planned { background: var(--grey-light); }
   .roadmap-feature { flex: 1; font-size: 0.88rem; font-weight: 600; color: var(--text); }
-  .roadmap-status { font-size: 0.75rem; font-weight: 700; padding: 3px 12px; border-radius: 12px; }
+  .roadmap-status { font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; }
   .roadmap-status.live { background: var(--green-light); color: var(--green-dark); }
-  .roadmap-status.progress { background: #fef9e7; color: #92400e; }
+  .roadmap-status.progress { background: #fef3c7; color: #92400e; }
   .roadmap-status.planned { background: #f1f5f9; color: var(--grey); }
 
-  /* ── INSIGHT BOX ── */
-  .insight-box { background: linear-gradient(135deg, var(--grey), #3a4450); color: var(--white); border-radius: 14px; padding: 32px 40px; margin: 24px 0; }
-  .insight-box .ib-title { font-size: 1.2rem; font-weight: 900; color: var(--green); margin-bottom: 12px; }
-  .insight-box p { font-size: 0.95rem; line-height: 1.8; opacity: 0.9; font-weight: 300; }
-  .insight-box strong { font-weight: 700; color: var(--white); opacity: 1; }
+  /* ── POLLS CALLOUT ── */
+  .polls-callout { background: linear-gradient(135deg, #1e2533, #2a3545); border-radius: 14px; padding: 28px 36px; margin-top: 20px; display: flex; gap: 20px; align-items: flex-start; }
+  .polls-callout .pc-icon { font-size: 2.5rem; flex-shrink: 0; }
+  .polls-callout .pc-title { font-size: 1rem; font-weight: 900; color: var(--green); margin-bottom: 8px; }
+  .polls-callout .pc-text { font-size: 0.88rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+  .polls-callout strong { color: var(--white); }
 
   /* ── FOOTER ── */
-  .footer { background: var(--grey); color: rgba(255,255,255,0.7); text-align: center; padding: 28px 48px; font-size: 0.8rem; line-height: 1.8; }
+  .footer { background: var(--grey); color: rgba(255,255,255,0.65); text-align: center; padding: 32px 48px; font-size: 0.8rem; line-height: 2; }
   .footer strong { color: var(--white); }
+  .footer-logo { margin-bottom: 12px; }
+  .footer-logo img { height: 36px; opacity: 0.85; }
 
   /* ── FADE IN ── */
-  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
   /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     .header { padding: 16px 24px; }
-    .section { padding: 40px 24px; }
+    .section { padding: 36px 24px; }
     .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .platform-grid { grid-template-columns: repeat(3, 1fr); }
     .chart-row { grid-template-columns: 1fr; }
@@ -203,8 +286,15 @@
     .priority-grid { grid-template-columns: 1fr 1fr; }
     .team-grid { grid-template-columns: repeat(2, 1fr); }
     .mom-row { grid-template-columns: 1fr; }
-    .hero-stats { gap: 28px; }
-    .nav { padding: 0 24px; }
+    .hero-stats { gap: 0; }
+    .hero-stat { padding: 16px 24px; }
+    .nav { padding: 0 16px; top: 82px; }
+    .ops-grid { grid-template-columns: 1fr; }
+    .status-grid { grid-template-columns: 1fr; }
+    .rp-grid { grid-template-columns: 1fr; }
+    .stat-strip { gap: 16px; }
+    .stat-item { border-right: none; border-bottom: 1px solid #d1d9e0; padding: 12px 0; }
+    .hero h1 { font-size: 2.2rem; }
   }
 </style>
 </head>
@@ -215,8 +305,11 @@
 
 <!-- HEADER -->
 <header class="header">
-  <img src="logo.png" alt="Truth Report" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
-  <div style="display:none; font-size:1.4rem; font-weight:900; color:var(--grey);">TR <span style="color:var(--green);">TRUTH REPORT</span></div>
+  <img src="logo.png" alt="Truth Report" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+  <div style="display:none; align-items:center; gap:10px;">
+    <div style="background:var(--green); color:white; font-size:1.1rem; font-weight:900; padding:8px 12px; border-radius:8px;">TR</div>
+    <div style="font-size:1.3rem; font-weight:900; color:var(--grey);">TRUTH <span style="color:var(--green);">REPORT</span></div>
+  </div>
   <div class="header-right">
     <div class="year">2026</div>
     <div class="period">1 April 2025 &mdash; 28 February 2026</div>
@@ -225,27 +318,28 @@
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="#analytics">Analytics</a>
-  <a href="#financials">Financials</a>
-  <a href="#operations">Operations</a>
-  <a href="#team">Team</a>
-  <a href="#milestones">Milestones</a>
-  <a href="#product">Product</a>
-  <a href="#outlook">Outlook</a>
+  <a href="#analytics">📊 Analytics</a>
+  <a href="#financials">💰 Financials</a>
+  <a href="#operations">⚙️ Operations</a>
+  <a href="#team">👥 Team</a>
+  <a href="#milestones">🏆 Milestones</a>
+  <a href="#product">🚀 Product</a>
+  <a href="#outlook">🎯 Outlook</a>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <h1>Investor &amp; Stakeholder Update<br><span>Q1 2026 — End of February</span></h1>
-  <p class="hero-sub">We have built a highly efficient media engine and a substantial, engaged South African audience. The next chapter is converting that audience into sustainable revenue — on a platform we own.</p>
+<div class="hero fade-in">
+  <div class="hero-eyebrow">Truth Report Media — Q1 2026</div>
+  <h1>Investor &amp; Stakeholder Update<br><span>End of February 2026</span></h1>
+  <p class="hero-sub">In 11 months, we built a highly efficient South African media engine — 69.8 million impressions, 348,449 followers, and a structural burn rate down 57.8% from peak. The next chapter is monetisation.</p>
   <div class="hero-badge">Confidential Report — March 2026</div>
   <div class="hero-stats">
     <div class="hero-stat">
-      <div class="hs-val">69.8M</div>
+      <div class="hs-val" data-count="69819252" data-suffix="M" data-divisor="1000000">69.8M</div>
       <div class="hs-label">Total Impressions</div>
     </div>
     <div class="hero-stat">
-      <div class="hs-val">348,449</div>
+      <div class="hs-val" data-count="348449" data-format="comma">348,449</div>
       <div class="hs-label">Total Followers</div>
     </div>
     <div class="hero-stat">
@@ -266,8 +360,13 @@
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- SECTION 1: ANALYTICS -->
 <!-- ═══════════════════════════════════════════════════ -->
+<div class="section-wrap">
 <section id="analytics" class="section fade-in">
-  <div class="section-title">1. Platform Analytics &amp; Audience Growth</div>
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <div class="section-title-text">Platform Analytics &amp; Audience Growth</div>
+  </div>
+  <hr class="section-divider-line">
   <p class="section-subtitle">Cumulative performance since inception (1 April 2025) through 28 February 2026 across all channels.</p>
 
   <!-- KPI TILES -->
@@ -287,8 +386,8 @@
     <div class="kpi-tile green">
       <div class="label">Blended Cost Per Impression</div>
       <div class="sublabel">across all channels</div>
-      <div class="value large">R0.06</div>
-      <div class="trend">Consistent efficiency</div>
+      <div class="value large">R0.07</div>
+      <div class="trend">World-class efficiency</div>
     </div>
     <div class="kpi-tile green-dark">
       <div class="label">Average Cost Per Video</div>
@@ -322,16 +421,37 @@
     </div>
   </div>
 
-  <!-- CONTENT STATS -->
-  <div style="background:var(--white); border-radius:12px; padding:20px 28px; box-shadow:0 2px 12px rgba(0,0,0,0.07); margin-bottom:32px; display:flex; gap:40px; flex-wrap:wrap;">
-    <div><strong style="color:var(--grey); font-size:1rem;">Total YouTube Videos:</strong> <span style="font-size:1rem; color:var(--green); font-weight:700;">659</span></div>
-    <div><strong style="color:var(--grey); font-size:1rem;">Total Shorts:</strong> <span style="font-size:1rem; color:var(--green); font-weight:700;">353</span> <span style="color:var(--grey-light); font-size:0.85rem;">(35 p/m)</span></div>
-    <div><strong style="color:var(--grey); font-size:1rem;">Total Longform:</strong> <span style="font-size:1rem; color:var(--green); font-weight:700;">306</span> <span style="color:var(--grey-light); font-size:0.85rem;">(30 p/m)</span></div>
-    <div><strong style="color:var(--grey); font-size:1rem;">Audience Growth:</strong> <span style="font-size:1rem; color:var(--green); font-weight:700;">+14.7%</span> <span style="color:var(--grey-light); font-size:0.85rem;">(303,875 → 348,449)</span></div>
+  <!-- CONTENT STATS STRIP -->
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="si-label">Total YouTube Videos</div>
+      <div class="si-val">659</div>
+      <div class="si-sub">Since inception</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-label">Total Shorts</div>
+      <div class="si-val">353</div>
+      <div class="si-sub">35 per month avg</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-label">Total Longform</div>
+      <div class="si-val">306</div>
+      <div class="si-sub">30 per month avg</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-label">Audience Growth</div>
+      <div class="si-val">+14.7%</div>
+      <div class="si-sub">303,875 → 348,449</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-label">Total Interactions</div>
+      <div class="si-val">4.0M</div>
+      <div class="si-sub">Since inception</div>
+    </div>
   </div>
 
   <!-- MoM BADGES -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">January &amp; February 2026 — Month-on-Month Performance</h3>
+  <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>January &amp; February 2026 — Month-on-Month Performance</h3>
   <div class="mom-row">
     <div class="mom-badge">
       <div class="mom-label">Impressions — All Platforms</div>
@@ -363,42 +483,47 @@
   </div>
 
   <!-- PLATFORM CARDS -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Channel Breakdown (Cumulative Since Inception)</h3>
+  <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>Channel Breakdown — Cumulative Since Inception</h3>
   <div class="platform-grid">
-    <div class="platform-card">
+    <div class="platform-card fb">
       <div class="platform-icon">📘</div>
       <div class="platform-name">Facebook</div>
       <div class="platform-metric">38,562,290</div>
       <div class="platform-metric-label">Impressions</div>
       <div class="platform-followers">147,000 followers</div>
+      <div class="platform-share"><div class="platform-share-fill" style="width:0%; background:#4267B2;" data-width="55%"></div></div>
     </div>
-    <div class="platform-card">
+    <div class="platform-card yt">
       <div class="platform-icon">▶️</div>
       <div class="platform-name">YouTube</div>
       <div class="platform-metric">13,016,078</div>
       <div class="platform-metric-label">Impressions</div>
       <div class="platform-followers">113,000 followers</div>
+      <div class="platform-share"><div class="platform-share-fill" style="width:0%; background:#FF0000;" data-width="19%"></div></div>
     </div>
-    <div class="platform-card">
+    <div class="platform-card ig">
       <div class="platform-icon">📸</div>
       <div class="platform-name">Instagram</div>
       <div class="platform-metric">6,896,016</div>
       <div class="platform-metric-label">Impressions</div>
       <div class="platform-followers">43,400 followers</div>
+      <div class="platform-share"><div class="platform-share-fill" style="width:0%; background:#C13584;" data-width="10%"></div></div>
     </div>
-    <div class="platform-card">
+    <div class="platform-card tt">
       <div class="platform-icon">🎵</div>
       <div class="platform-name">TikTok</div>
       <div class="platform-metric">5,463,122</div>
       <div class="platform-metric-label">Impressions</div>
       <div class="platform-followers">39,500 followers</div>
+      <div class="platform-share"><div class="platform-share-fill" style="width:0%; background:#69C9D0;" data-width="8%"></div></div>
     </div>
-    <div class="platform-card">
+    <div class="platform-card xtwit">
       <div class="platform-icon">𝕏</div>
       <div class="platform-name">X (Twitter)</div>
       <div class="platform-metric">4,471,219</div>
       <div class="platform-metric-label">Impressions</div>
       <div class="platform-followers">5,549 followers</div>
+      <div class="platform-share"><div class="platform-share-fill" style="width:0%; background:#aaaaaa;" data-width="6%"></div></div>
     </div>
   </div>
 
@@ -421,53 +546,78 @@
   </div>
 
   <!-- TOP POSTS -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Top Performing Posts — January &amp; February 2026</h3>
+  <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>Top Performing Posts — January &amp; February 2026</h3>
   <div class="top-posts">
     <div class="post-card">
       <div class="post-rank">1</div>
       <span class="post-platform facebook">Facebook</span>
       <div class="post-text">Follow the money behind the presidency — The moment South Africa lost its last chance at real accountability</div>
       <div class="post-date">11 Feb 2026</div>
-      <div class="post-metrics"><div class="post-impressions">666,918</div><div class="post-interactions">22,884 interactions</div></div>
+      <div class="post-metrics">
+        <div class="post-impressions">666,918</div>
+        <div class="post-interactions">22,884 interactions</div>
+        <div class="post-bar"><div class="post-bar-fill" style="width:0%" data-width="100%"></div></div>
+      </div>
     </div>
     <div class="post-card">
       <div class="post-rank">2</div>
       <span class="post-platform facebook">Facebook</span>
       <div class="post-text">The ANC is a dead horse — South Africa's last chance at real accountability</div>
       <div class="post-date">11 Feb 2026</div>
-      <div class="post-metrics"><div class="post-impressions">298,421</div><div class="post-interactions">12,493 interactions</div></div>
+      <div class="post-metrics">
+        <div class="post-impressions">298,421</div>
+        <div class="post-interactions">12,493 interactions</div>
+        <div class="post-bar"><div class="post-bar-fill" style="width:0%" data-width="45%"></div></div>
+      </div>
     </div>
     <div class="post-card">
       <div class="post-rank">3</div>
       <span class="post-platform facebook">Facebook</span>
       <div class="post-text">The ultimate ANC voter test — Thirty years. Endless promises. Zero delivery.</div>
       <div class="post-date">23 Feb 2026</div>
-      <div class="post-metrics"><div class="post-impressions">171,204</div><div class="post-interactions">10,135 interactions</div></div>
+      <div class="post-metrics">
+        <div class="post-impressions">171,204</div>
+        <div class="post-interactions">10,135 interactions</div>
+        <div class="post-bar"><div class="post-bar-fill" style="width:0%" data-width="26%"></div></div>
+      </div>
     </div>
     <div class="post-card">
       <div class="post-rank">4</div>
       <span class="post-platform facebook">Facebook</span>
       <div class="post-text">Suing the ANC for Crimes Against Humanity — Errol Naidoo &amp; Rob Hersov (FNC)</div>
       <div class="post-date">25 Feb 2026</div>
-      <div class="post-metrics"><div class="post-impressions">130,658</div><div class="post-interactions">11,815 interactions</div></div>
+      <div class="post-metrics">
+        <div class="post-impressions">130,658</div>
+        <div class="post-interactions">11,815 interactions</div>
+        <div class="post-bar"><div class="post-bar-fill" style="width:0%" data-width="20%"></div></div>
+      </div>
     </div>
     <div class="post-card">
       <div class="post-rank">5</div>
       <span class="post-platform youtube">YouTube</span>
       <div class="post-text">ROB HERSOV: South Africa's Last Exit Before Becoming Venezuela</div>
       <div class="post-date">15 Jan 2026</div>
-      <div class="post-metrics"><div class="post-impressions">108,197</div><div class="post-interactions">8,207 interactions</div></div>
+      <div class="post-metrics">
+        <div class="post-impressions">108,197</div>
+        <div class="post-interactions">8,207 interactions</div>
+        <div class="post-bar"><div class="post-bar-fill" style="width:0%" data-width="16%"></div></div>
+      </div>
     </div>
   </div>
 </section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- SECTION 2: FINANCIALS -->
 <!-- ═══════════════════════════════════════════════════ -->
-<hr class="section-divider">
+<div class="section-wrap">
 <section id="financials" class="section fade-in">
-  <div class="section-title">2. Financial Position &amp; Runway</div>
-  <p class="section-subtitle">Based on Investec bank statements through 28 February 2026. February spend elevated by FNC event investment — a one-off strategic cost that generated ~50 content pieces.</p>
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <div class="section-title-text">Financial Position &amp; Runway</div>
+  </div>
+  <hr class="section-divider-line">
+  <p class="section-subtitle">Based on Investec bank statements through 28 February 2026. February spend elevated by FNC event investment — a one-off strategic cost that generated ~50 content pieces and filled the Q2 pipeline.</p>
 
   <!-- KPI TILES -->
   <div class="kpi-grid">
@@ -499,18 +649,21 @@
 
   <!-- RUNWAY -->
   <div class="runway-bar-wrap">
-    <div class="runway-label">
-      <span>Runway Visualisation</span>
-      <span>~20 Months Remaining</span>
+    <div class="runway-header">
+      <div class="rh-label">Runway Visualisation — Cash Position vs Burn Rate</div>
+      <div class="rh-val">~20 Months Remaining</div>
     </div>
     <div class="runway-bar">
-      <div class="runway-fill green" id="runwayBar" style="width:0%">~20 months at current net burn</div>
+      <div class="runway-fill" id="runwayBar" style="width:0%">~20 months at current net burn</div>
     </div>
-    <div class="runway-note">Based on R7.1M cash position and ~R253k average net monthly burn (Jan–Feb 2026). February spend elevated by FNC event investment — underlying structural burn continues to decrease.</div>
+    <div class="runway-markers">
+      <span>Now</span><span>6 months</span><span>12 months</span><span>18 months</span><span>24 months</span>
+    </div>
+    <div class="runway-note">Based on R7.1M cash position and ~R253k average net monthly burn (Jan–Feb 2026). February spend elevated by the Future of Nations Conference — a fully-funded event investment, not a structural cost increase. Underlying structural burn continues to decrease month-on-month.</div>
   </div>
 
   <!-- REVENUE TABLE -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Revenue by Stream</h3>
+  <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>Revenue by Stream</h3>
   <table class="fin-table">
     <thead>
       <tr>
@@ -536,7 +689,7 @@
         <td>R60,000</td>
         <td>R420,000</td>
       </tr>
-      <tr>
+      <tr class="highlight">
         <td>Interest Income (Savings)</td>
         <td class="green-val">R32,488</td>
         <td>R36,985</td>
@@ -548,13 +701,13 @@
         <td class="green-val"><strong>R118,367</strong></td>
         <td><strong>R131,415</strong></td>
         <td><strong>R143,112</strong></td>
-        <td><strong>R1,025,785</strong></td>
+        <td><strong>R1,037,276</strong></td>
       </tr>
     </tbody>
   </table>
 
   <!-- SPEND TABLE -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Monthly Operating Expenditure</h3>
+  <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>Monthly Operating Expenditure</h3>
   <table class="fin-table">
     <thead>
       <tr>
@@ -570,34 +723,34 @@
     <tbody>
       <tr>
         <td>People</td>
-        <td class="amber-val">R279,500</td>
+        <td class="green-val">R279,500</td>
         <td>R197,100</td>
         <td>R226,500</td>
         <td>R326,864</td>
         <td>R344,820</td>
-        <td>R435,950</td>
+        <td class="red-val">R435,950</td>
       </tr>
       <tr>
         <td>Tools &amp; Subscriptions</td>
-        <td>R48,729</td>
+        <td class="green-val">R48,729</td>
         <td>R21,175</td>
         <td>R20,148</td>
         <td>R23,358</td>
         <td>R69,826</td>
-        <td>R67,769</td>
+        <td class="red-val">R67,769</td>
       </tr>
       <tr>
         <td>Operational Expenses</td>
-        <td class="amber-val">R43,728 <span style="font-size:0.7rem; font-weight:400; color:#92400e;">(FNC event)</span></td>
+        <td class="amber-val">R43,728 <small>(FNC event)</small></td>
         <td>R52,905</td>
         <td>R34,931</td>
         <td>R40,180</td>
         <td>R35,978</td>
-        <td>R138,926</td>
+        <td class="red-val">R138,926</td>
       </tr>
-      <tr class="total-row highlight">
+      <tr class="total-row">
         <td><strong>Total Operating Spend</strong></td>
-        <td class="amber-val"><strong>R371,957</strong> <span style="font-size:0.7rem; font-weight:400;">(FNC month)</span></td>
+        <td class="amber-val"><strong>R371,957</strong> <small>(FNC month)</small></td>
         <td class="green-val"><strong>R271,180</strong></td>
         <td><strong>R281,579</strong></td>
         <td><strong>R390,402</strong></td>
@@ -606,7 +759,9 @@
       </tr>
     </tbody>
   </table>
-  <p style="font-size:0.83rem; color:var(--grey-light); margin-bottom:32px; line-height:1.6;">Operating spend has decreased by <strong style="color:var(--green)">57.8%</strong> from the August 2025 peak. February's elevated spend reflects the <strong>Future of Nations Conference</strong> — a fully-funded event that generated ~50 content pieces and filled the Q2 pipeline. This is a one-off strategic investment, not a structural cost increase. Underlying burn continues to trend down.</p>
+  <p style="font-size:0.83rem; color:var(--grey-light); margin-bottom:32px; line-height:1.7; padding: 16px 20px; background: var(--green-light); border-radius: 10px; border-left: 4px solid var(--green);">
+    <strong style="color:var(--green-dark);">↓ 57.8% reduction in structural burn</strong> from the August 2025 peak. February's elevated spend reflects the <strong style="color:var(--grey);">Future of Nations Conference</strong> — a fully-funded event that generated ~50 content pieces and filled the Q2 pipeline. This is a one-off strategic investment, not a structural cost increase.
+  </p>
 
   <!-- SPEND CHART -->
   <div class="chart-row">
@@ -617,154 +772,170 @@
   </div>
 
   <!-- PATH TO REVENUE -->
-  <div style="margin-top: 40px; background: #f8fafc; border-left: 4px solid var(--green); padding: 24px; border-radius: 0 8px 8px 0;">
-    <h3 style="font-size:1.1rem; font-weight:700; color:var(--grey); margin-bottom:12px;">The Path to Revenue &amp; Breakeven</h3>
-    <p style="font-size:0.95rem; color:#4a5568; line-height:1.6; margin-bottom:16px;">
-      While Q1 focused on aggressive audience acquisition and driving down the cost per impression (now at a highly efficient R0.07), Q2 marks the transition toward monetisation. The gap between our current R371k monthly burn and our R25k YouTube income is the primary strategic focus for the next 90 days.
-    </p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
-      <div>
-        <div style="font-weight:700; color:var(--grey); margin-bottom:8px;">1. Direct Monetisation</div>
-        <p style="font-size:0.85rem; color:#4a5568; line-height:1.5;">With the payment gateway integration underway, we are unlocking direct audience support via Apple/Google Pay. This enables creator donations, superchats, and the foundation for premium subscriptions.</p>
+  <div class="revenue-path">
+    <h3>The Path to Revenue &amp; Breakeven</h3>
+    <p class="rp-sub">Q1 was about audience acquisition and efficiency. Q2 is about monetisation. The gap between our R371k monthly burn and R25k YouTube income is the primary strategic focus for the next 90 days. Three clear levers close that gap:</p>
+    <div class="rp-grid">
+      <div class="rp-item">
+        <div class="rp-num">01</div>
+        <div class="rp-title">Direct Monetisation</div>
+        <div class="rp-desc">Payment gateway integration underway — unlocking direct audience support via Apple/Google Pay, creator donations, superchats, and the foundation for premium subscriptions.</div>
       </div>
-      <div>
-        <div style="font-weight:700; color:var(--grey); margin-bottom:8px;">2. Ad Revenue Scaling</div>
-        <p style="font-size:0.85rem; color:#4a5568; line-height:1.5;">YouTube ad revenue grew to R25,879 in Feb. With the FNC content pipeline (50+ videos) and fixed recording dates, we are increasing watch-hours to drive this baseline revenue stream upward.</p>
+      <div class="rp-item">
+        <div class="rp-num">02</div>
+        <div class="rp-title">Ad Revenue Scaling</div>
+        <div class="rp-desc">YouTube ad revenue at R25,879 in Feb. With 50+ FNC videos and fixed recording dates driving watch-hours, this baseline revenue stream is on a clear upward trajectory.</div>
       </div>
-      <div>
-        <div style="font-weight:700; color:var(--grey); margin-bottom:8px;">3. Foundation Funding</div>
-        <p style="font-size:0.85rem; color:#4a5568; line-height:1.5;">The April launch of the Truth Report Foundation (NPC) unlocks eligibility for grant and donor funding aligned with public-interest journalism and creator development.</p>
+      <div class="rp-item">
+        <div class="rp-num">03</div>
+        <div class="rp-title">Foundation Funding</div>
+        <div class="rp-desc">The April 2026 launch of the Truth Report Foundation (NPC) unlocks eligibility for grant and donor funding aligned with public-interest journalism and creator development.</div>
       </div>
     </div>
   </div>
 
 </section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- SECTION 3: OPERATIONS -->
 <!-- ═══════════════════════════════════════════════════ -->
-<hr class="section-divider">
+<div class="section-wrap">
 <section id="operations" class="section fade-in">
-  <div class="section-title">3. Operations &amp; Production Controls</div>
-  <p class="section-subtitle">A more focused, structured, and output-driven team operating under clear guardrails — driving higher views at lower cost.</p>
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <div class="section-title-text">Operations &amp; Production Controls</div>
+  </div>
+  <hr class="section-divider-line">
+  <p class="section-subtitle">A more focused, structured, and output-driven team operating under clear guardrails — driving higher views at lower cost per video.</p>
 
   <!-- PRODUCTION GUARDRAILS -->
-  <div class="chart-row" style="grid-template-columns: 1fr 1fr 1fr; margin-bottom:28px;">
-    <div class="chart-card" style="border-top:4px solid var(--green); text-align:center;">
-      <div class="chart-title">YouTube Longform</div>
-      <div style="font-size:2.8rem; font-weight:900; color:var(--grey); margin:8px 0; line-height:1;">3/day</div>
-      <div style="font-size:0.83rem; color:#4a5568;">Max per day. 1 live per week. Fixed recording cadence in place.</div>
+  <div class="ops-grid">
+    <div class="ops-card">
+      <div class="ops-label">YouTube Longform</div>
+      <div class="ops-num">3<span style="font-size:1.4rem;">/day</span></div>
+      <div class="ops-desc">Maximum per day. 1 live per week. Fixed recording cadence in place with centralised booking through Production Manager.</div>
     </div>
-    <div class="chart-card" style="border-top:4px solid var(--green); text-align:center;">
-      <div class="chart-title">Shorts / Clips</div>
-      <div style="font-size:2.8rem; font-weight:900; color:var(--grey); margin:8px 0; line-height:1;">5–10/day</div>
-      <div style="font-size:0.83rem; color:#4a5568;">Dedicated Clips Channel: min 20/week. Distributed across all platforms.</div>
+    <div class="ops-card">
+      <div class="ops-label">Shorts &amp; Clips</div>
+      <div class="ops-num">5–10<span style="font-size:1.4rem;">/day</span></div>
+      <div class="ops-desc">Dedicated Clips Channel launched — minimum 20 clips per week. Distributed across all platforms for maximum top-of-funnel reach.</div>
     </div>
-    <div class="chart-card" style="border-top:4px solid var(--green); text-align:center;">
-      <div class="chart-title">Filming Days</div>
-      <div style="font-size:2.8rem; font-weight:900; color:var(--grey); margin:8px 0; line-height:1;">Max 2/wk</div>
-      <div style="font-size:0.83rem; color:#4a5568;">1 JHB weekly studio set. CPT: R5,000/unlimited hour negotiated.</div>
-    </div>
-  </div>
-
-  <!-- LIVE BROADCAST TESTING -->
-  <div class="milestone-card featured" style="margin-bottom:20px; grid-column: 1/-1;">
-    <div class="milestone-icon">📡</div>
-    <div>
-      <div class="milestone-tag blue">Live Broadcast Testing</div>
-      <div class="milestone-title">SONA, Budget Speech &amp; Helen Zille Manifesto Launch — Live Coverage Tested</div>
-      <div class="milestone-desc">Truth Report successfully tested live broadcast capabilities across three major political events: the State of the Nation Address (SONA), the National Budget Speech, and Helen Zille's Manifesto Launch. These tests validated our technical stack and team capacity for real-time political coverage — a critical capability ahead of the 2026 election cycle. The team is now actively working on streamlining and standardising this process for consistent, scalable live output.</div>
+    <div class="ops-card">
+      <div class="ops-label">Filming Days</div>
+      <div class="ops-num">Max <span style="font-size:1.4rem;">2/wk</span></div>
+      <div class="ops-desc">1 JHB weekly studio set. Cape Town: R5,000/unlimited hours negotiated. All submissions through single intake point.</div>
     </div>
   </div>
 
-  <!-- SYSTEMS TABLE -->
-  <table class="fin-table">
-    <thead>
-      <tr>
-        <th>System / Initiative</th>
-        <th class="green">Status</th>
-        <th>Detail</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Trello Workflow Management</strong></td>
-        <td class="green-val">Live — Feb 2026</td>
-        <td>Full team now operates on Trello for real-time pipeline visibility across all 21 operational sections. Tightens handoffs, deadlines, and approvals across the entire production chain.</td>
-      </tr>
-      <tr>
-        <td><strong>RACI Framework (v7)</strong></td>
-        <td class="green-val">Complete</td>
-        <td>Fully updated RACI enforces strict ownership from strategy through production and final delivery. Every task has a named accountable owner.</td>
-      </tr>
-      <tr>
-        <td><strong>Fixed Recording Dates</strong></td>
-        <td class="green-val">Implemented</td>
-        <td>Centralised booking system managed by Production Manager. All content submissions go through a single intake point — eliminating scheduling conflicts and last-minute changes.</td>
-      </tr>
-      <tr>
-        <td><strong>Live Broadcast Capability</strong></td>
-        <td style="color:#f6c23e; font-weight:700;">Streamlining</td>
-        <td>Successfully tested on SONA, Budget Speech, and Helen Zille's Manifesto Launch. Process standardisation underway for consistent, scalable live political coverage.</td>
-      </tr>
-      <tr>
-        <td><strong>Zulu Language Channel</strong></td>
-        <td style="color:#f6c23e; font-weight:700;">Launching</td>
-        <td>Dedicated Zulu-language channel to expand reach into a significant underserved audience segment and broaden Truth Report's national footprint.</td>
-      </tr>
-      <tr>
-        <td><strong>Remote Operations</strong></td>
-        <td class="green-val">Complete</td>
-        <td>Full transition from office-based to remote model. Production output stable and growing. Burn rate significantly reduced as a direct result.</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- STATUS CARDS -->
+  <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>Systems &amp; Initiatives Status</h3>
+  <div class="status-grid">
+    <div class="status-card">
+      <div class="status-dot-wrap"><div class="status-dot live"></div></div>
+      <div>
+        <div class="sc-badge live">Live — Feb 2026</div>
+        <div class="sc-title">Trello Workflow Management</div>
+        <div class="sc-desc">Full team now operates on Trello for real-time pipeline visibility across all 21 operational sections. Tightens handoffs, deadlines, and approvals across the entire production chain.</div>
+      </div>
+    </div>
+    <div class="status-card">
+      <div class="status-dot-wrap"><div class="status-dot live"></div></div>
+      <div>
+        <div class="sc-badge live">Complete</div>
+        <div class="sc-title">RACI Framework (v7)</div>
+        <div class="sc-desc">Fully updated RACI enforces strict ownership from strategy through production and final delivery. Every task has a named accountable owner — no ambiguity.</div>
+      </div>
+    </div>
+    <div class="status-card">
+      <div class="status-dot-wrap"><div class="status-dot live"></div></div>
+      <div>
+        <div class="sc-badge live">Implemented</div>
+        <div class="sc-title">Fixed Recording Dates</div>
+        <div class="sc-desc">Centralised booking system managed by Production Manager. All content submissions go through a single intake point — eliminating scheduling conflicts and last-minute changes.</div>
+      </div>
+    </div>
+    <div class="status-card">
+      <div class="status-dot-wrap"><div class="status-dot progress"></div></div>
+      <div>
+        <div class="sc-badge progress">Streamlining</div>
+        <div class="sc-title">Live Broadcast Capability</div>
+        <div class="sc-desc">Successfully tested on SONA, Budget Speech, and Helen Zille's Manifesto Launch. Process standardisation underway for consistent, scalable live political coverage ahead of 2026 elections.</div>
+      </div>
+    </div>
+    <div class="status-card">
+      <div class="status-dot-wrap"><div class="status-dot launching"></div></div>
+      <div>
+        <div class="sc-badge launching">Launching</div>
+        <div class="sc-title">Zulu Language Channel</div>
+        <div class="sc-desc">Dedicated Zulu-language channel to expand reach into a significant underserved audience segment and broaden Truth Report's national footprint.</div>
+      </div>
+    </div>
+    <div class="status-card">
+      <div class="status-dot-wrap"><div class="status-dot live"></div></div>
+      <div>
+        <div class="sc-badge live">Complete</div>
+        <div class="sc-title">Remote Operations</div>
+        <div class="sc-desc">Full transition from office-based to remote model. Production output stable and growing. Burn rate significantly reduced as a direct result — saving over R100k/month vs peak.</div>
+      </div>
+    </div>
+  </div>
 </section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- SECTION 4: TEAM -->
 <!-- ═══════════════════════════════════════════════════ -->
-<hr class="section-divider">
+<div class="section-wrap">
 <section id="team" class="section fade-in">
-  <div class="section-title">4. Team &amp; Creator Network</div>
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <div class="section-title-text">Team &amp; Creator Network</div>
+  </div>
+  <hr class="section-divider-line">
   <p class="section-subtitle">A leaner, more focused core team — structured for output, accountability, and scale. Consistently expanding our creator network with new talent.</p>
 
-  <div class="insight-box" style="margin-bottom:28px;">
+  <div class="insight-box" style="margin-bottom:32px;">
     <div class="ib-title">A More Focused, Output-Driven Team</div>
-    <p>Truth Report's core team has been deliberately restructured for clarity and performance. Every role has a defined owner in the RACI framework, every task flows through Trello, and every production decision sits with a named accountable person. The result: <strong>more content, better quality, lower cost per video</strong> — with a team that operates with the discipline of a media company, not a startup.</p>
+    <p>Truth Report's core team has been deliberately restructured for clarity and performance. Every role has a defined owner in the RACI framework, every task flows through Trello, and every production decision sits with a named accountable person. The result: <strong>more content, better quality, lower cost per video</strong> — with a team that operates with the discipline of a media company, not a startup. This is not a team that is growing headcount — it is a team that is growing output per person.</p>
   </div>
 
-  <!-- CORE TEAM -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Core Operations Team</h3>
-  <div class="team-grid">
+  <!-- LEADERSHIP -->
+  <div class="team-section-label">Leadership</div>
+  <div class="team-grid" style="grid-template-columns: repeat(3, 1fr);">
     <div class="team-card">
       <div class="team-avatar">NF</div>
       <div class="team-name">Nick French</div>
-      <div class="team-role">Interim CEO</div>
-      <div class="team-type core">Core</div>
+      <div class="team-role">Interim Chief Executive Officer</div>
+      <div class="team-type core">Leadership</div>
     </div>
     <div class="team-card">
       <div class="team-avatar">MS</div>
       <div class="team-name">Mike Saunders</div>
       <div class="team-role">Chief Technology Officer</div>
-      <div class="team-type core">Core</div>
+      <div class="team-type core">Leadership</div>
     </div>
     <div class="team-card">
       <div class="team-avatar">JW</div>
       <div class="team-name">Jo van Wyk</div>
       <div class="team-role">Operations Director</div>
+      <div class="team-type core">Leadership</div>
+    </div>
+  </div>
+
+  <!-- PRODUCTION & CONTENT -->
+  <div class="team-section-label">Production &amp; Content</div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">JE</div>
+      <div class="team-name">Joe Emilio</div>
+      <div class="team-role">Production Manager</div>
       <div class="team-type core">Core</div>
     </div>
     <div class="team-card">
       <div class="team-avatar">JP</div>
       <div class="team-name">JP Joubert</div>
       <div class="team-role">Creative Director / Videographer</div>
-      <div class="team-type core">Core</div>
-    </div>
-    <div class="team-card">
-      <div class="team-avatar">JE</div>
-      <div class="team-name">Joe Emilio</div>
-      <div class="team-role">Production Manager</div>
       <div class="team-type core">Core</div>
     </div>
     <div class="team-card">
@@ -786,7 +957,7 @@
       <div class="team-type core">Core</div>
     </div>
     <div class="team-card">
-      <div class="team-avatar">CK</div>
+      <div class="team-avatar">CG</div>
       <div class="team-name">Christine Glass</div>
       <div class="team-role">Junior Creative Designer</div>
       <div class="team-type core">Core</div>
@@ -794,22 +965,22 @@
   </div>
 
   <!-- TECH TEAM -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px; margin-top:8px;">Technology Team</h3>
+  <div class="team-section-label">Technology</div>
   <div class="team-grid" style="grid-template-columns: repeat(3, 1fr);">
     <div class="team-card">
-      <div class="team-avatar" style="background:#9d174d;">JG</div>
+      <div class="team-avatar" style="background:linear-gradient(135deg,#9d174d,#be185d);">JG</div>
       <div class="team-name">Josh Groombridge</div>
       <div class="team-role">Front End &amp; UX</div>
       <div class="team-type tech">Tech</div>
     </div>
     <div class="team-card">
-      <div class="team-avatar" style="background:#9d174d;">HV</div>
+      <div class="team-avatar" style="background:linear-gradient(135deg,#9d174d,#be185d);">HS</div>
       <div class="team-name">Hercules Strydom</div>
       <div class="team-role">Middleware Developer</div>
       <div class="team-type tech">Tech</div>
     </div>
     <div class="team-card">
-      <div class="team-avatar" style="background:#9d174d;">SP</div>
+      <div class="team-avatar" style="background:linear-gradient(135deg,#9d174d,#be185d);">SP</div>
       <div class="team-name">Shaun Sparg</div>
       <div class="team-role">Full Stack Developer</div>
       <div class="team-type tech">Tech</div>
@@ -817,62 +988,71 @@
   </div>
 
   <!-- CREATOR NETWORK -->
-  <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px; margin-top:24px;">Creator Network — Consistent &amp; Expanding</h3>
-  <p style="font-size:0.88rem; color:#4a5568; margin-bottom:20px; line-height:1.6;">Truth Report consistently collaborates with established creators and is actively onboarding new talent as consistent contributors. This month, we welcomed <strong style="color:var(--grey);">Mat Cohen</strong> and <strong style="color:var(--grey);">Stephan the Podcaster</strong> to the network.</p>
-  <div class="team-grid" style="grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); max-width: 400px;">
+  <div class="team-section-label">Creator Network — New Additions (Feb 2026)</div>
+  <p style="font-size:0.88rem; color:#4a5568; margin-bottom:20px; line-height:1.6;">Truth Report consistently collaborates with established creators and is actively onboarding new talent as consistent contributors. This month, we welcomed <strong style="color:var(--grey);">Mat Cohen</strong> and <strong style="color:var(--grey);">Stephan the Podcaster</strong> to the network — expanding our editorial range and audience reach.</p>
+  <div class="team-grid" style="grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); max-width: 420px;">
     <div class="team-card">
-      <img src="mat_cohen.png" alt="Mat Cohen" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--green); margin-bottom:10px;">
+      <img src="mat_cohen.png" alt="Mat Cohen" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--green); margin-bottom:10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div style="display:none; width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--green),var(--green-dark)); color:white; font-size:1.4rem; font-weight:900; align-items:center; justify-content:center; margin:0 auto 10px;">MC</div>
       <div class="team-name">Mat Cohen</div>
       <div class="team-role">Content Creator</div>
       <div class="team-type creator">New — Feb 2026</div>
     </div>
     <div class="team-card">
-      <img src="stephan_podcaster.png" alt="Stephan the Podcaster" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--green); margin-bottom:10px;">
+      <img src="stephan_podcaster.png" alt="Stephan the Podcaster" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:3px solid var(--green); margin-bottom:10px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div style="display:none; width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--green),var(--green-dark)); color:white; font-size:1.4rem; font-weight:900; align-items:center; justify-content:center; margin:0 auto 10px;">SP</div>
       <div class="team-name">Stephan the Podcaster</div>
       <div class="team-role">Podcaster &amp; Creator</div>
       <div class="team-type creator">New — Feb 2026</div>
     </div>
   </div>
 </section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- SECTION 5: MILESTONES -->
 <!-- ═══════════════════════════════════════════════════ -->
-<hr class="section-divider">
+<div class="section-wrap">
 <section id="milestones" class="section fade-in">
-  <div class="section-title">5. Key Milestones</div>
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <div class="section-title-text">Key Milestones</div>
+  </div>
+  <hr class="section-divider-line">
   <p class="section-subtitle">Major achievements during the December 2025 – February 2026 reporting period.</p>
 
   <div class="milestone-list">
-    <div class="milestone-card featured" style="border-left-color: var(--green); background: linear-gradient(135deg, #f0fae8, #fff);">
+    <div class="milestone-card major-green">
       <div class="milestone-icon">🎤</div>
       <div>
-        <div class="milestone-tag" style="background:var(--green); color:white;">MAJOR MILESTONE — First In-Person Event</div>
+        <div class="milestone-tag green">MAJOR MILESTONE — First In-Person Event</div>
         <div class="milestone-title">Future of Nations Conference (FNC) — 25 February 2026</div>
-        <div class="milestone-desc">A landmark success and a defining moment for Truth Report — our <strong>first major in-person event</strong> as a team. The entire Truth Report team attended and executed with excellence. We flew in <strong>Renaldo Gouws</strong> to assist with hosting interviews, and the team delivered outstanding results under real event conditions. Fully funded with sponsorships paid. The event generated <strong>close to 50 high-quality content pieces</strong> in a single day — dramatically lowering average cost per video and filling the Q2 content pipeline. The top post from the event ("Suing the ANC") reached <strong>666,918 impressions</strong>. The team's performance at FNC demonstrated that Truth Report can operate professionally and at scale in a live, high-stakes environment.</div>
+        <div class="milestone-desc">A landmark success and a defining moment for Truth Report — our <strong>first major in-person event</strong> as a team. The entire Truth Report team attended and executed with excellence. We flew in <strong>Renaldo Gouws</strong> to assist with hosting interviews, and the team delivered outstanding results under real event conditions. Fully funded with sponsorships paid. The event generated <strong>close to 50 high-quality content pieces</strong> in a single day — dramatically lowering average cost per video and filling the Q2 content pipeline. The top post from the event reached <strong>666,918 impressions</strong>. The team's performance at FNC proved that Truth Report can operate professionally and at scale in a live, high-stakes environment.</div>
       </div>
     </div>
+
+    <div class="milestone-card major-red">
+      <div class="milestone-icon">📡</div>
+      <div>
+        <div class="milestone-tag red">MAJOR MILESTONE — First for the Team</div>
+        <div class="milestone-title">Live Coverage of Major Events — SONA, Budget Speech &amp; Helen Zille Manifesto Launch</div>
+        <div class="milestone-desc">A landmark first for the Truth Report team — live broadcast coverage of three major national political events. The team executed live production professionally under real broadcast conditions for the first time, proving our capacity to cover the events that define South Africa's political landscape. Truth Report is now an active live media partner for high-profile political events. The team is actively streamlining and standardising this process for consistent, scalable live output ahead of the 2026 election cycle.</div>
+      </div>
+    </div>
+
     <div class="milestone-card">
       <div class="milestone-icon">📊</div>
       <div>
-        <div class="milestone-tag">Product Live</div>
+        <div class="milestone-tag green">Product Live</div>
         <div class="milestone-title">Community Polls — Live on Website &amp; Socials</div>
         <div class="milestone-desc">Community Polls are live on the Truth Report website and are consistently pushed to social media. This is a deliberate, strategic warm-up for the introduction of <strong>Prediction Markets</strong> — a key premium product differentiator. We are building audience habit and expectation ahead of the full launch.</div>
       </div>
     </div>
 
-    <div class="milestone-card featured" style="border-left-color: #e53e3e; background: linear-gradient(135deg, #fff5f5, #fff);">
-      <div class="milestone-icon">📡</div>
-      <div>
-        <div class="milestone-tag" style="background:#e53e3e; color:white;">MAJOR MILESTONE — First for the Team</div>
-        <div class="milestone-title">Live Coverage of Major Events — SONA, Budget Speech &amp; Helen Zille Manifesto Launch</div>
-        <div class="milestone-desc">A landmark first for the Truth Report team — live broadcast coverage of three major national political events: the State of the Nation Address (SONA), the National Budget Speech, and Helen Zille's Manifesto Launch. The team executed live production professionally under real broadcast conditions for the first time, proving our capacity to cover the events that define South Africa's political landscape. This marks a significant commercial and editorial milestone — Truth Report is now an active live media partner for high-profile political events. The team is actively streamlining and standardising this process for consistent, scalable live output ahead of the 2026 election cycle.</div>
-      </div>
-    </div>
     <div class="milestone-card">
       <div class="milestone-icon">🎙️</div>
       <div>
-        <div class="milestone-tag">Show Launch</div>
+        <div class="milestone-tag light">Show Launch</div>
         <div class="milestone-title">Truth Report Live — Weekly Anchor Show</div>
         <div class="milestone-desc">Truth Report Live is established as the weekly anchor show on Tuesdays, focused on South African politics and current affairs. The premiere episode registered <strong>15,000 views within the first 24 hours</strong> and generated R500 in Superchats.</div>
       </div>
@@ -881,72 +1061,88 @@
     <div class="milestone-card">
       <div class="milestone-icon">📰</div>
       <div>
-        <div class="milestone-tag">Media Coverage</div>
+        <div class="milestone-tag grey">Media Coverage</div>
         <div class="milestone-title">MyBroadband Feature</div>
         <div class="milestone-desc">Truth Report was featured in MyBroadband as a new online news platform competing with News24 and IOL, highlighting backing from Rob Hersov and Nick French and positioning the platform as a "well-funded, big podcaster."</div>
       </div>
     </div>
+
     <div class="milestone-card">
       <div class="milestone-icon">📉</div>
       <div>
-        <div class="milestone-tag">Financial</div>
-        <div class="milestone-title">57.8% Reduction in Structural Monthly Burn (Jan 2026)</div>
+        <div class="milestone-tag green">Financial</div>
+        <div class="milestone-title">57.8% Reduction in Structural Monthly Burn</div>
         <div class="milestone-desc">Operating spend reduced from R642,645 (August 2025 peak) to R271,180 in January 2026. Achieved through remote operations transition, software optimisation, and disciplined people cost management. February's higher spend is event-driven, not structural.</div>
       </div>
     </div>
-  <div class="milestone-card">
-      <div class="milestone-icon">🎬</div>
-      <div>
-        <div class="milestone-tag">Q2 2026 Production</div>
-        <div class="milestone-title">Orania Documentary — In Planning</div>
-        <div class="milestone-desc">A planned documentary production in Orania, featuring Renaldo Gouws and Sama Sambit alongside the Truth Report recording team. This represents a significant step into long-form documentary content, expanding the editorial scope of the platform into deeper investigative storytelling.</div>
-      </div>
-    </div>
+
     <div class="milestone-card">
       <div class="milestone-icon">✂️</div>
       <div>
-        <div class="milestone-tag" style="background:var(--green); color:white;">Channel Launched</div>
+        <div class="milestone-tag green">Channel Launched</div>
         <div class="milestone-title">Truth Report Clips Channel — Live</div>
         <div class="milestone-desc">A dedicated Clips Channel has been launched to distribute short-form highlights across all platforms. Targeting a minimum of 20 clips per week, this channel extends the reach of long-form content, drives top-of-funnel discovery, and feeds the algorithm on YouTube, TikTok, Instagram, and Facebook.</div>
       </div>
     </div>
+
+    <div class="milestone-card">
+      <div class="milestone-icon">🎬</div>
+      <div>
+        <div class="milestone-tag amber">Q2 2026 Production</div>
+        <div class="milestone-title">Orania Documentary — In Planning</div>
+        <div class="milestone-desc">A planned documentary production in Orania, featuring Renaldo Gouws and Sama Sambit alongside the Truth Report recording team. This represents a significant step into long-form documentary content, expanding the editorial scope of the platform into deeper investigative storytelling.</div>
+      </div>
+    </div>
+
     <div class="milestone-card">
       <div class="milestone-icon">🎙️</div>
       <div>
-        <div class="milestone-tag">In Progress</div>
+        <div class="milestone-tag amber">In Progress</div>
         <div class="milestone-title">Spotify Podcast Distribution — In Progress</div>
         <div class="milestone-desc">Truth Report is actively working on establishing a Spotify presence to distribute audio content and podcasts. This will extend our reach into the growing podcast audience segment and create an additional owned distribution channel independent of video platforms.</div>
       </div>
     </div>
+
     <div class="milestone-card">
       <div class="milestone-icon">🎉</div>
       <div>
-        <div class="milestone-tag">April 2026</div>
+        <div class="milestone-tag blue">April 2026</div>
         <div class="milestone-title">1-Year Anniversary Celebration — In Planning</div>
         <div class="milestone-desc">A small, intimate event planned to mark Truth Report's first year — celebrating our creators, team, and the journey from zero to nearly 70 million impressions. The event will include the handover of the YouTube 100k Silver Play Button reward, recognising the milestone achievement of the channel crossing 100,000 subscribers.</div>
       </div>
     </div>
   </div>
 </section>
+</div>
+
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- SECTION 6: PRODUCT -->
 <!-- ═══════════════════════════════════════════════════ -->
-<hr class="section-divider">
+<div class="section-wrap">
 <section id="product" class="section fade-in">
-  <div class="section-title">6. Product &amp; Technology</div>
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <div class="section-title-text">Product &amp; Technology</div>
+  </div>
+  <hr class="section-divider-line">
   <p class="section-subtitle">Platform development, monetisation infrastructure, and two strategic product initiatives in active planning.</p>
 
   <div class="chart-row" style="grid-template-columns: 1fr 1fr;">
     <div>
-      <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Platform Roadmap</h3>
+      <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>Platform Roadmap</h3>
       <div class="roadmap-item">
-        <div class="roadmap-dot live"></div>
+        <div class="roadmap-dot progress"></div>
         <div class="roadmap-feature">Payment Gateway Integration</div>
-        <div class="roadmap-status planned">In Progress</div>
+        <div class="roadmap-status progress">In Progress</div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-dot live"></div>
-        <div class="roadmap-feature">Community Polls (website + social distribution)</div>
+        <div class="roadmap-feature">Community Polls (website + social)</div>
+        <div class="roadmap-status live">Live</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot live"></div>
+        <div class="roadmap-feature">Truth Report Clips Channel</div>
         <div class="roadmap-status live">Live</div>
       </div>
       <div class="roadmap-item">
@@ -960,14 +1156,19 @@
         <div class="roadmap-status progress">In Progress</div>
       </div>
       <div class="roadmap-item">
-        <div class="roadmap-dot planned"></div>
-        <div class="roadmap-feature">AI-Powered Content Summaries</div>
-        <div class="roadmap-status planned">Planned</div>
+        <div class="roadmap-dot progress"></div>
+        <div class="roadmap-feature">Spotify Podcast Distribution</div>
+        <div class="roadmap-status progress">In Progress</div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-dot planned"></div>
         <div class="roadmap-feature">Creator Donations Feature</div>
         <div class="roadmap-status planned">Q2 Launch</div>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-dot planned"></div>
+        <div class="roadmap-feature">AI-Powered Content Summaries</div>
+        <div class="roadmap-status planned">Planned</div>
       </div>
       <div class="roadmap-item">
         <div class="roadmap-dot planned"></div>
@@ -981,9 +1182,9 @@
       </div>
     </div>
     <div>
-      <h3 style="font-size:0.9rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:16px;">Strategic Product Initiatives</h3>
+      <h3 style="font-size:0.82rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; display:flex; align-items:center; gap:8px;"><span style="width:3px; height:14px; background:var(--green); border-radius:2px; display:inline-block;"></span>Strategic Product Initiatives</h3>
 
-      <div class="milestone-card" style="margin-bottom:14px; border-left-color:#3b82f6;">
+      <div class="milestone-card" style="margin-bottom:14px; border-left-color:var(--blue);">
         <div class="milestone-icon">🗺️</div>
         <div>
           <div class="milestone-tag blue">Planning &amp; Scoping</div>
@@ -992,28 +1193,37 @@
         </div>
       </div>
 
-      <div class="milestone-card" style="border-left-color:#6DC135;">
+      <div class="milestone-card" style="border-left-color:var(--green);">
         <div class="milestone-icon">🏛️</div>
         <div>
-          <div class="milestone-tag">Rebranding</div>
+          <div class="milestone-tag green">Rebranding</div>
           <div class="milestone-title">Truth Report Foundation — Transition In Progress</div>
-          <div class="milestone-desc">The transition from Grassroots Mzansi NPC to <strong>Truth Report Foundation</strong> is in progress, with a formal launch expected in <strong>April 2026</strong>. The Foundation will serve as the social impact and public-interest arm of the Truth Report ecosystem — housing investigative storytelling, creator development training, community media, and documentary production. A dual commercial/impact structure aligned with global best practice and SDG alignment for grant and donor funding eligibility.</div>
+          <div class="milestone-desc">The transition from Grassroots Mzansi NPC to <strong>Truth Report Foundation</strong> is in progress, with a formal launch expected in <strong>April 2026</strong>. The Foundation will serve as the social impact and public-interest arm of the Truth Report ecosystem — housing investigative storytelling, creator development training, community media, and documentary production. A dual commercial/impact structure aligned with global best practice for grant and donor funding eligibility.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div style="background:var(--off-white); border-radius:10px; padding:20px 24px; font-size:0.85rem; color:#4a5568; line-height:1.7; margin-top:8px;">
-    <strong style="color:var(--grey);">Why Polls → Prediction Markets matters:</strong> Community Polls are live on the website and consistently distributed to social media. This is a deliberate audience conditioning strategy — building the habit of participation and expectation before the full Prediction Markets product launches. By the time Prediction Markets go live, Truth Report will have a trained, engaged audience ready to participate. This is the premium monetisation flywheel.
+  <div class="polls-callout">
+    <div class="pc-icon">🗳️</div>
+    <div>
+      <div class="pc-title">Why Polls → Prediction Markets is a Strategic Flywheel</div>
+      <div class="pc-text">Community Polls are live on the website and consistently distributed to social media. This is a deliberate <strong>audience conditioning strategy</strong> — building the habit of participation and expectation before the full Prediction Markets product launches. By the time Prediction Markets go live, Truth Report will have a trained, engaged audience ready to participate. <strong>This is the premium monetisation flywheel.</strong></div>
+    </div>
   </div>
 </section>
+</div>
 
 <!-- ═══════════════════════════════════════════════════ -->
 <!-- SECTION 7: OUTLOOK -->
 <!-- ═══════════════════════════════════════════════════ -->
-<hr class="section-divider">
+<div class="section-wrap">
 <section id="outlook" class="section fade-in">
-  <div class="section-title">7. Q2 2026 Priorities &amp; Outlook</div>
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <div class="section-title-text">Q2 2026 Priorities &amp; Outlook</div>
+  </div>
+  <hr class="section-divider-line">
   <p class="section-subtitle">We have built the engine. The next chapter is monetisation, owned audience, and proprietary product.</p>
 
   <div class="priority-grid">
@@ -1021,50 +1231,55 @@
       <div class="priority-num">01</div>
       <div class="priority-title">Payment Gateway &amp; Monetisation</div>
       <div class="priority-desc">Deploy the payment gateway to enable direct audience donations and lay the technical groundwork for premium subscriptions. Launch paid YouTube/Facebook tiers.</div>
-      <div style="margin-top:12px; font-size:0.75rem; color:var(--green); font-weight:700; text-transform:uppercase;">Owner: Mike Saunders | Target: Mid-Q2</div>
+      <div class="priority-owner">👤 Mike Saunders &nbsp;|&nbsp; 📅 Mid-Q2</div>
     </div>
     <div class="priority-card">
       <div class="priority-num">02</div>
       <div class="priority-title">Truth Report Foundation Launch</div>
       <div class="priority-desc">Complete the transition from Grassroots Mzansi NPC. Establish governance, funding eligibility, and the creator development training pipeline.</div>
-      <div style="margin-top:12px; font-size:0.75rem; color:var(--green); font-weight:700; text-transform:uppercase;">Owner: Nick French | Target: April 2026</div>
+      <div class="priority-owner">👤 Jo van Wyk &nbsp;|&nbsp; 📅 April 2026</div>
     </div>
     <div class="priority-card">
       <div class="priority-num">03</div>
       <div class="priority-title">Election Hub Scoping</div>
       <div class="priority-desc">Finalise the data architecture and UX scoping for the Ward-Level Political Intelligence Platform ahead of the 2026 elections.</div>
-      <div style="margin-top:12px; font-size:0.75rem; color:var(--green); font-weight:700; text-transform:uppercase;">Owner: Jo van Wyk | Target: End Q2</div>
+      <div class="priority-owner">👤 Jo van Wyk &nbsp;|&nbsp; 📅 End Q2</div>
     </div>
     <div class="priority-card">
       <div class="priority-num">04</div>
       <div class="priority-title">Orania Documentary Production</div>
       <div class="priority-desc">Execute the planned documentary shoot in Orania with Renaldo Gouws and Sama Sambit, expanding our long-form investigative capabilities.</div>
-      <div style="margin-top:12px; font-size:0.75rem; color:var(--green); font-weight:700; text-transform:uppercase;">Owner: Jo van Wyk | Target: May 2026</div>
+      <div class="priority-owner">👤 Jo van Wyk &nbsp;|&nbsp; 📅 May 2026</div>
     </div>
     <div class="priority-card">
       <div class="priority-num">05</div>
       <div class="priority-title">Creator Network Expansion</div>
-      <div class="priority-desc">Onboard the next cohort of consistent creators following the success of Mat Cohen and Stephan the Podcaster, diversifying our audience reach.</div>
-      <div style="margin-top:12px; font-size:0.75rem; color:var(--green); font-weight:700; text-transform:uppercase;">Owner: Joe Emilio | Target: Ongoing</div>
+      <div class="priority-desc">Onboard the next cohort of consistent creators following the success of Mat Cohen and Stephan the Podcaster, diversifying our audience reach and editorial range.</div>
+      <div class="priority-owner">👤 Joe Emilio &nbsp;|&nbsp; 📅 Ongoing</div>
     </div>
     <div class="priority-card">
       <div class="priority-num">06</div>
       <div class="priority-title">1-Year Anniversary Event</div>
-      <div class="priority-desc">Execute the intimate celebration event for creators and team, including the YouTube 100k Silver Play Button handover.</div>
-      <div style="margin-top:12px; font-size:0.75rem; color:var(--green); font-weight:700; text-transform:uppercase;">Owner: Jo van Wyk | Target: April 2026</div>
+      <div class="priority-desc">Execute the intimate celebration event for creators and team, including the YouTube 100k Silver Play Button handover — marking a year of extraordinary growth.</div>
+      <div class="priority-owner">👤 Jo van Wyk &nbsp;|&nbsp; 📅 April 2026</div>
     </div>
   </div>
 
   <div class="insight-box">
-    <div class="ib-title">The Bottom Line</div>
-    <p>In our first 11 months, Truth Report has acquired <strong>69.8 million impressions</strong> and built a following of <strong>348,449 people</strong> at a blended cost of just <strong>R0.06 per impression</strong>. Our structural burn rate has been cut by 57.8% from peak. We have over <strong>20 months of runway</strong>. The Future of Nations Conference proved we can generate premium content at scale — and our live broadcast tests on SONA, the Budget Speech, and Helen Zille's Manifesto Launch prove we can cover the events that matter in real time. The unit economics are working. The team is focused, structured, and output-driven. The next phase is not more content — it is <strong>better monetisation per impression, a platform our audience calls home, and a proprietary political intelligence product that no one else in South Africa has.</strong></p>
+    <div class="ib-title">The Bottom Line &amp; Our Ask</div>
+    <p>In our first 11 months, Truth Report has acquired <strong>69.8 million impressions</strong> and built a following of <strong>348,449 people</strong> at a blended cost of just <strong>R0.07 per impression</strong>. Our structural burn rate has been cut by <strong>57.8% from peak</strong>. We have over <strong>20 months of runway</strong>. The Future of Nations Conference proved we can generate premium content at scale — and our live broadcast tests on SONA, the Budget Speech, and Helen Zille's Manifesto Launch prove we can cover the events that matter in real time.<br><br>The unit economics are working. The team is focused, structured, and output-driven. The next phase is not more content — it is <strong>better monetisation per impression, a platform our audience calls home, and a proprietary political intelligence product that no one else in South Africa has.</strong><br><br><strong>We ask our investors and stakeholders for three things:</strong> strategic introductions for Truth Report Foundation funding and grant eligibility; commercial partnership referrals for election-season sponsorships and branded content; and product feedback on the Election Hub and Prediction Markets as we move into scoping.</p>
   </div>
 </section>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
+  <div class="footer-logo">
+    <img src="logo.png" alt="Truth Report" onerror="this.style.display='none'">
+  </div>
   <strong>Truth Report Media (Pty) Ltd</strong> &mdash; Investor &amp; Stakeholder Update &mdash; March 2026<br>
-  This report is confidential and intended solely for named investors, shareholders, and team members. Unauthorised review, use, disclosure, or distribution is strictly prohibited. All rights reserved.
+  This report is confidential and intended solely for named investors, shareholders, and team members.<br>
+  Unauthorised review, use, disclosure, or distribution is strictly prohibited. All rights reserved.
 </footer>
 
 <!-- ═══════════════════════════════════════════════════ -->
@@ -1082,22 +1297,22 @@ new Chart(document.getElementById('impressionsChart'), {
   data: {
     labels: months,
     datasets: [
-      { label: 'Facebook', data: [3184758,3936549,1775644,5451253,4279421,2301624,4932249,3224789,3762653,1537015,3266978], backgroundColor: '#4267B2', stack: 'stack' },
-      { label: 'YouTube', data: [1379740,820813,425533,1008635,1084661,866552,1052038,1587855,1630468,1085870,1460481], backgroundColor: '#FF0000', stack: 'stack' },
-      { label: 'Instagram', data: [498661,1024453,387055,899971,654916,338063,923051,453474,667960,288084,580705], backgroundColor: '#C13584', stack: 'stack' },
-      { label: 'TikTok', data: [939113,1137901,298137,578968,390147,407787,205182,131793,1144111,72418,127624], backgroundColor: '#69C9D0', stack: 'stack' },
-      { label: 'X (Twitter)', data: [0,2267,32089,364367,303810,90010,227040,30081,100955,35597,138158], backgroundColor: '#aaaaaa', stack: 'stack' }
+      { label: 'Facebook', data: [3184758,3936549,1775644,5451253,4279421,2301624,4932249,3224789,3762653,1537015,3266978], backgroundColor: '#4267B2', stack: 'stack', borderRadius: 2 },
+      { label: 'YouTube', data: [1379740,820813,425533,1008635,1084661,866552,1052038,1587855,1630468,1085870,1460481], backgroundColor: '#FF0000', stack: 'stack', borderRadius: 2 },
+      { label: 'Instagram', data: [498661,1024453,387055,899971,654916,338063,923051,453474,667960,288084,580705], backgroundColor: '#C13584', stack: 'stack', borderRadius: 2 },
+      { label: 'TikTok', data: [939113,1137901,298137,578968,390147,407787,205182,131793,1144111,72418,127624], backgroundColor: '#69C9D0', stack: 'stack', borderRadius: 2 },
+      { label: 'X (Twitter)', data: [0,2267,32089,364367,303810,90010,227040,30081,100955,35597,138158], backgroundColor: '#aaaaaa', stack: 'stack', borderRadius: 2 }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: {
-      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11, family: 'Lato' } } },
+      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11, family: 'Lato' }, padding: 16 } },
       tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString()}` } }
     },
     scales: {
-      x: { stacked: true, ticks: { color: TR_GREY, font: { family: 'Lato' } }, grid: { display: false } },
-      y: { stacked: true, ticks: { color: TR_GREY, font: { family: 'Lato' }, callback: v => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : (v/1000).toFixed(0)+'k' }, grid: { color: '#eee' } }
+      x: { stacked: true, ticks: { color: TR_GREY, font: { family: 'Lato', size: 11 } }, grid: { display: false } },
+      y: { stacked: true, ticks: { color: TR_GREY, font: { family: 'Lato', size: 11 }, callback: v => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : (v/1000).toFixed(0)+'k' }, grid: { color: '#f0f2f5' } }
     }
   }
 });
@@ -1107,12 +1322,12 @@ new Chart(document.getElementById('followersChart'), {
   type: 'doughnut',
   data: {
     labels: ['Facebook (147k)', 'YouTube (113k)', 'Instagram (43.4k)', 'TikTok (39.5k)', 'X (5.5k)'],
-    datasets: [{ data: [147000, 113000, 43400, 39500, 5549], backgroundColor: ['#4267B2','#FF0000','#C13584','#69C9D0','#aaaaaa'], borderWidth: 3, borderColor: '#fff' }]
+    datasets: [{ data: [147000, 113000, 43400, 39500, 5549], backgroundColor: ['#4267B2','#FF0000','#C13584','#69C9D0','#aaaaaa'], borderWidth: 4, borderColor: '#fff', hoverOffset: 8 }]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: {
-      legend: { position: 'bottom', labels: { color: TR_GREY, font: { size: 10, family: 'Lato' }, padding: 12 } },
+      legend: { position: 'bottom', labels: { color: TR_GREY, font: { size: 10, family: 'Lato' }, padding: 14 } },
       tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} followers` } }
     }
   }
@@ -1124,19 +1339,19 @@ new Chart(document.getElementById('janFebChart'), {
   data: {
     labels: ['Facebook','YouTube','Instagram','TikTok','X'],
     datasets: [
-      { label: 'January 2026', data: [1537015, 1085870, 288084, 72418, 35597], backgroundColor: TR_GREY, borderRadius: 4 },
-      { label: 'February 2026', data: [3266978, 1460481, 580705, 127624, 138158], backgroundColor: TR_GREEN, borderRadius: 4 }
+      { label: 'January 2026', data: [1537015, 1085870, 288084, 72418, 35597], backgroundColor: TR_GREY+'cc', borderRadius: 6 },
+      { label: 'February 2026', data: [3266978, 1460481, 580705, 127624, 138158], backgroundColor: TR_GREEN, borderRadius: 6 }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: {
-      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11, family: 'Lato' } } },
+      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11, family: 'Lato' }, padding: 16 } },
       tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw.toLocaleString()}` } }
     },
     scales: {
-      x: { ticks: { color: TR_GREY, font: { family: 'Lato' } }, grid: { display: false } },
-      y: { ticks: { color: TR_GREY, font: { family: 'Lato' }, callback: v => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : (v/1000).toFixed(0)+'k' }, grid: { color: '#eee' } }
+      x: { ticks: { color: TR_GREY, font: { family: 'Lato', size: 11 } }, grid: { display: false } },
+      y: { ticks: { color: TR_GREY, font: { family: 'Lato', size: 11 }, callback: v => v >= 1e6 ? (v/1e6).toFixed(1)+'M' : (v/1000).toFixed(0)+'k' }, grid: { color: '#f0f2f5' } }
     }
   }
 });
@@ -1147,31 +1362,53 @@ new Chart(document.getElementById('spendChart'), {
   data: {
     labels: ['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb'],
     datasets: [
-      { label: 'Operating Expenses', data: [332032,394581,401116,355296,642645,449911,450624,390402,281579,271180,371957], borderColor: '#e53e3e', backgroundColor: 'rgba(229,62,62,0.07)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#e53e3e', fill: true, tension: 0.3 },
-      { label: 'Trading Income', data: [0,0,210,37241,70383,71726,73627,79015,105037,94430,85879], borderColor: TR_GREEN, backgroundColor: 'rgba(109,193,53,0.07)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: TR_GREEN, fill: true, tension: 0.3 },
-      { label: 'Interest Income', data: [1882,37611,45924,46878,45544,39875,43240,39604,38075,36985,32488], borderColor: '#f6c23e', backgroundColor: 'rgba(246,194,62,0.05)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#f6c23e', fill: false, tension: 0.3, borderDash: [5,3] }
+      { label: 'Operating Expenses', data: [332032,394581,401116,355296,642645,449911,450624,390402,281579,271180,371957], borderColor: '#e53e3e', backgroundColor: 'rgba(229,62,62,0.06)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#e53e3e', fill: true, tension: 0.4 },
+      { label: 'Trading Income', data: [0,0,210,37241,70383,71726,73627,79015,105037,94430,85879], borderColor: TR_GREEN, backgroundColor: 'rgba(109,193,53,0.08)', borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: TR_GREEN, fill: true, tension: 0.4 },
+      { label: 'Interest Income', data: [1882,37611,45924,46878,45544,39875,43240,39604,38075,36985,32488], borderColor: '#f6c23e', backgroundColor: 'rgba(246,194,62,0.04)', borderWidth: 2, pointRadius: 4, pointBackgroundColor: '#f6c23e', fill: false, tension: 0.4, borderDash: [5,3] }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
     plugins: {
-      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11, family: 'Lato' } } },
+      legend: { position: 'top', labels: { color: TR_GREY, font: { size: 11, family: 'Lato' }, padding: 16 } },
       tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: R${ctx.raw.toLocaleString()}` } }
     },
     scales: {
-      x: { ticks: { color: TR_GREY, font: { family: 'Lato' } }, grid: { display: false } },
-      y: { ticks: { color: TR_GREY, font: { family: 'Lato' }, callback: v => 'R' + (v/1000).toFixed(0) + 'k' }, grid: { color: '#eee' } }
+      x: { ticks: { color: TR_GREY, font: { family: 'Lato', size: 11 } }, grid: { display: false } },
+      y: { ticks: { color: TR_GREY, font: { family: 'Lato', size: 11 }, callback: v => 'R' + (v/1000).toFixed(0) + 'k' }, grid: { color: '#f0f2f5' } }
     }
   }
 });
 
 // ── RUNWAY ANIMATION ──
-setTimeout(() => { document.getElementById('runwayBar').style.width = '67%'; }, 800);
+setTimeout(() => { document.getElementById('runwayBar').style.width = '67%'; }, 900);
+
+// ── PLATFORM SHARE BAR ANIMATION ──
+setTimeout(() => {
+  document.querySelectorAll('.platform-share-fill[data-width]').forEach(el => {
+    el.style.width = el.getAttribute('data-width');
+  });
+}, 1200);
+
+// ── POST BAR ANIMATION ──
+setTimeout(() => {
+  document.querySelectorAll('.post-bar-fill[data-width]').forEach(el => {
+    el.style.width = el.getAttribute('data-width');
+  });
+}, 1400);
 
 // ── FADE IN OBSERVER ──
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.08 });
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      // Trigger bar animations when section becomes visible
+      e.target.querySelectorAll('[data-width]').forEach(el => {
+        setTimeout(() => { el.style.width = el.getAttribute('data-width'); }, 400);
+      });
+    }
+  });
+}, { threshold: 0.06 });
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 // ── ACTIVE NAV ──
@@ -1179,7 +1416,7 @@ const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav a');
 window.addEventListener('scroll', () => {
   let current = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id'); });
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 160) current = s.getAttribute('id'); });
   navLinks.forEach(a => { a.classList.remove('active'); if (a.getAttribute('href') === '#' + current) a.classList.add('active'); });
 });
 </script>
